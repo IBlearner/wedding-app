@@ -1,0 +1,74 @@
+.name_heading {
+    color: rgb(255, 255, 255);
+    font-family: "MyFont4", cursive;
+    text-align: center;
+    font-size: 2.5rem;
+    text-shadow: -1px -1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0), -1px 1px 0 rgb(0, 0, 0), 1px 1px 0 rgb(0, 0, 0);
+    letter-spacing: 0.5rem;
+}
+
+.centered-and {
+    display: block;
+    text-align: center;
+    font-family: "MyFont5";
+    font-size: 2rem;
+}
+
+.centre_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.RSVP_button {
+    background-color: rgb(59, 52, 35);
+    color: white;
+    font-family: "MyFont3";
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem;
+    border-color: white;
+    border-radius: 10px;
+    letter-spacing: 0.5rem;
+}
+
+.RSVP_button:hover {
+    background-color: rgb(204, 142, 42);
+    transform: translateY(-2px);
+}
+
+.home_image {
+    border: 5px dotted rgba(180, 150, 84, 0.719);
+    border-radius: 12px;
+}
+
+@font-face {
+    font-family: "MyFont";
+    src: url("../assets/fonts/GravitasOne-Regular.ttf") format("woff2");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: "MyFont2";
+    src: url("../assets/fonts/KaushanScript-Regular.ttf") format("woff2");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: "MyFont3";
+    src: url("../assets/fonts/Ribeye-Regular.ttf") format("woff2");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: "MyFont4";
+    src: url("../assets/fonts/Vidaloka-Regular.ttf") format("woff2");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: "MyFont5";
+    src: url("../assets/fonts/LavishlyYours-Regular.ttf") format("woff2");
+    font-weight: bolder;
+}
