@@ -1,0 +1,56 @@
+.menu-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	height: 2rem;
+	margin: 1rem 1rem;
+}
+
+.menu-overlay {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	transform: translateX(0);
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	visibility: visible;
+	transition: opacity 0.5s ease, visibility 0.5s ease;
+
+	&.close {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateX(100vw);
+	}
+}
+
+.menu {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	transform: translateX(0);
+	width: 75vw;
+	height: 200vh;
+	background-color: #333;
+	transition: transform 0.5s ease;
+
+	> ul {
+		margin-left: 3rem;
+	}
+
+	&.close {
+		transform: translateX(100vw);
+	}
+}
+
+.menu-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	height: 2rem;
+	margin: 1rem 1rem;
+}

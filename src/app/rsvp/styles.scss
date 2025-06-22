@@ -1,0 +1,61 @@
+.page-rsvp {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.page-rsvp-title {
+	align-self: center;
+}
+
+.page-rsvp-name-search {
+	align-self: center;
+}
+
+.page-rsvp-form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.yes-no-buttons {
+	display: flex;
+	gap: 2rem;
+	justify-content: center;
+
+	button {
+		padding: 0.5rem 1rem;
+		min-width: 100px;
+		font-size: 1rem;
+		// font-weight: 500;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
+		// transition: all 0.2s ease-in-out;
+
+		&.selected {
+			background-color: #f0f0f0;
+			color: #333;
+		}
+	}
+}
+
+.section-dietry-selections {
+	input[type="checkbox"] {
+		padding-left: 8rem;
+	}
+	label {
+		padding-left: 0.5rem;
+	}
+}
+
+.page-rsvp-submit-button {
+	align-self: center;
+	padding: 0.5rem 1rem;
+	width: 8rem;
+	font-size: 1rem;
+	// font-weight: 500;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+}

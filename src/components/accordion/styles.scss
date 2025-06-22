@@ -1,0 +1,14 @@
+.accordion {
+}
+
+.accordion-question {
+}
+
+.accordion-answer {
+	height: 0;
+	transition: height 0.5s ease;
+
+	&.open {
+		height: 100%;
+	}
+}
