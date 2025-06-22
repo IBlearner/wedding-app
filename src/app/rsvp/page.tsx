@@ -45,6 +45,14 @@ export default function RSVP() {
 			setGuestId(guest.id);
 			setGuestFullName(`${capitaliseString(guest.fName)} ${capitaliseString(guest.lName)}`);
 			setError(false);
+			setIsAttending(false);
+			setNeedsDietChange(false);
+			setVegetarian(false);
+			setVegan(false);
+			setDairy(false);
+			setGluten(false);
+			setNeedsOtherDietChange(false);
+			setOther("");
 		} else {
 			setGuestId(0);
 			setGuestFullName("");
