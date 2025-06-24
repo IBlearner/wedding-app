@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import "./styles.scss";
 
 interface AccordionProps {
@@ -15,11 +16,12 @@ export default function Accordion({ question, answer }: AccordionProps) {
 	};
 
 	return (
-		<>
-			<button className="accordion" onClick={() => toggleAccordion()}>
-				<span className="accordion-title">{question}</span>
+		<div className={`accordion ${isOpen ? "open" : "close"}`}>
+			<button className="accordion-question" onClick={() => toggleAccordion()}>
+				<span>{question}</span>
+				<ChevronDown />
 			</button>
 			<div className={`accordion-answer ${isOpen ? "open" : "close"}`}>{answer}</div>
-		</>
+		</div>
 	);
 }

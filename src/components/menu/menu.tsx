@@ -12,6 +12,9 @@ export default function Menu() {
 
 	return (
 		<>
+			<button className="menu-home">
+				<Link href="/">H</Link>
+			</button>
 			<button className="menu-button" onClick={() => toggleMenu()}>
 				=
 			</button>
@@ -20,6 +23,13 @@ export default function Menu() {
 				<button className="menu-close" onClick={() => toggleMenu()}>
 					X
 				</button>
+				<ul>
+					<li>
+						<Link href="/rsvp" onNavigate={() => toggleMenu()}>
+							RSVP
+						</Link>
+					</li>
+				</ul>
 				<ul>
 					<li>
 						<Link href="/faq" onNavigate={() => toggleMenu()}>
