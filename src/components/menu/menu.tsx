@@ -1,54 +1,56 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+	House,
+	Menu as MenuIcon,
+	X,
+	MessageCircleQuestionMark,
+	CalendarDays,
+	Hotel,
+	MailQuestionMark
+} from "lucide-react";
 import "./styles.scss";
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false);
+	const router = useRouter();
 
-	const toggleMenu = () => {
-		setIsOpen(!isOpen);
+	const navigateTo = (target: string) => {
+		router.push(target);
+		setIsOpen(false);
 	};
 
 	return (
 		<>
-			<button className="menu-home">
-				<Link href="/">H</Link>
+			<button className="menu-home" onClick={() => navigateTo("/")}>
+				<House />
 			</button>
-			<button className="menu-button" onClick={() => toggleMenu()}>
-				=
+
+			<button className="menu-button" onClick={() => setIsOpen(true)}>
+				<MenuIcon />
 			</button>
 			<div className={`menu-overlay ${isOpen ? "open" : "close"}`}></div>
 			<div className={`menu ${isOpen ? "open" : "close"}`}>
-				<button className="menu-close" onClick={() => toggleMenu()}>
-					X
+				<button className="menu-close" onClick={() => setIsOpen(false)}>
+					<X />
 				</button>
 				<ul>
-					<li>
-						<Link href="/rsvp" onNavigate={() => toggleMenu()}>
-							RSVP
-						</Link>
+					<li onClick={() => navigateTo("/rsvp")}>
+						<MailQuestionMark />
+						RSVP
 					</li>
-				</ul>
-				<ul>
-					<li>
-						<Link href="/faq" onNavigate={() => toggleMenu()}>
-							FAQ
-						</Link>
+					<li onClick={() => navigateTo("/faq")}>
+						<MessageCircleQuestionMark />
+						FAQ
 					</li>
-				</ul>
-				<ul>
-					<li>
-						<Link href="/schedule" onNavigate={() => toggleMenu()}>
-							Schedule
-						</Link>
+					<li onClick={() => navigateTo("/schedule")}>
+						<CalendarDays />
+						Schedule
 					</li>
-				</ul>
-				<ul>
-					<li>
-						<Link href="/travelAccomodation" onNavigate={() => toggleMenu()}>
-							Travel and Accomodation
-						</Link>
+					<li onClick={() => navigateTo("/travelAccomodation")}>
+						<Hotel />
+						Travel and Accomodation
 					</li>
 				</ul>
 			</div>
