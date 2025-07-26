@@ -3,7 +3,9 @@ import Menu from "../components/menu/menu";
 import "./globals.scss";
 import { Cormorant } from "next/font/google";
 
-const dancingScript = Cormorant({});
+const dancingScript = Cormorant({
+	subsets: ["latin"]
+});
 
 export const metadata: Metadata = {
 	title: "Kienvi and Samantha's wedding",
