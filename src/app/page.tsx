@@ -5,26 +5,26 @@ import "./styles.scss";
 import Image from "next/image";
 
 export default function Home() {
-    return (
-        <>
-            <div className="centre_container">
-                <Image className="home_image" src={myImage} width={300} height={400} alt="home_picture" />
-                <h1 className="name_heading">
-                    Samantha
-                    <br /> <span className="centered-and">and</span>
-                    Kien Vi
-                </h1>
-                <main>
-                    <div>
-                        <Link href="/rsvp">
-                            <button className="RSVP_button" rel="noopener noreferrer">
-                                RSVP
-                            </button>
-                        </Link>
-                    </div>
-                </main>
-                <footer className={styles.footer}></footer>
-            </div>
-        </>
-    );
+	return (
+		<>
+			<div className="centre_container">
+				<Image className="home_image" src={myImage} width={300} height={400} alt="home_picture" />
+				<h1 className="name_heading">
+					Samantha
+					<br /> <span className="centered-and">and</span>
+					Kien Vi
+				</h1>
+				<main>
+					<div>
+						<Link href="/rsvp">
+							<button className="rsvp-button" rel="noopener noreferrer">
+								RSVP
+							</button>
+						</Link>
+					</div>
+				</main>
+				<footer className={styles.footer}></footer>
+			</div>
+		</>
+	);
 }

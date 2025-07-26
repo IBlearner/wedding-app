@@ -15,9 +15,9 @@ export default function FAQ() {
 	};
 
 	return (
-		<div className="page-faq">
-			<h1 className="page-faq-title">FAQ</h1>
-			{faqGroup()}
-		</div>
+		<>
+			<h1 className="page-title">FAQ</h1>
+			<div className="page-faq">{faqGroup()}</div>
+		</>
 	);
 }

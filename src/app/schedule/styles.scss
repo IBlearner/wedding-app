@@ -1,3 +1,8 @@
 .page-schedule-body {
-	border-left: 1px solid grey;
+	border-left: 1px solid var(--dark-grey);
+	padding-left: 2rem;
+
+	> div {
+		margin-bottom: 1rem;
+	}
 }

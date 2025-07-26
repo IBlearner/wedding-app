@@ -16,12 +16,12 @@ export default function Accordion({ question, answer }: AccordionProps) {
 	};
 
 	return (
-		<div className={`accordion ${isOpen ? "open" : "close"}`}>
-			<button className="accordion-question" onClick={() => toggleAccordion()}>
+		<div className={`accordion ${isOpen ? "open" : "close"}`} onClick={() => toggleAccordion()}>
+			<button className="accordion-question">
 				<span>{question}</span>
 				<ChevronDown />
 			</button>
-			<div className={`accordion-answer ${isOpen ? "open" : "close"}`}>{answer}</div>
+			<div className="accordion-answer">{answer}</div>
 		</div>
 	);
 }

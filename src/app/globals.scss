@@ -1,28 +1,32 @@
 :root {
 	--background: #ffffff;
 	--foreground: #171717;
+	--white: white;
+	--bg: whitesmoke;
+	--dark-grey: #252525;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
-}
+// @media (prefers-color-scheme: dark) {
+// 	:root {
+// 		--background: #0a0a0a;
+// 		--foreground: #ededed;
+// 	}
+// }
 
 html,
 body {
 	max-width: 100vw;
 	overflow-x: hidden;
-	background-image: url("../assets/images/black_bg4.jpg");
+	background-color: var(--bg);
 	overflow-x: hidden;
+	font-size: 20px;
 }
 
 body {
 	color: var(--foreground);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	padding: 2rem 2.5rem;
+	padding: 4rem 2.5rem 2rem 2.5rem;
 
 	@media (min-width: 481px) {
 		padding: 4rem 30vw;
@@ -48,4 +52,10 @@ fieldset {
 	html {
 		color-scheme: dark;
 	}
+}
+
+.page-title {
+	text-align: center;
+	padding-bottom: 1.5rem;
+	color: var(--dark-grey);
 }

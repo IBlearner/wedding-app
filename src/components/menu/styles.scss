@@ -1,10 +1,26 @@
-.menu-button {
+.menu-button,
+.menu-close,
+.menu-home {
+	cursor: pointer;
 	position: absolute;
+	box-sizing: content-box;
 	top: 0;
 	right: 0;
 	width: 2rem;
 	height: 2rem;
 	margin: 1rem 1rem;
+	padding: 0.5rem;
+	background-color: transparent;
+	border: none;
+	color: var(--dark-grey);
+}
+
+.menu-close {
+	color: var(--bg);
+}
+
+.menu-home {
+	left: 0;
 }
 
 .menu-overlay {
@@ -34,8 +50,9 @@
 	transform: translateX(0);
 	width: 75vw;
 	height: 100vh;
-	background-color: #333;
+	background-color: var(--dark-grey);
 	transition: transform 0.5s ease;
+	color: var(--bg);
 
 	> ul {
 		margin-top: 3rem;
@@ -58,22 +75,4 @@
 	&.close {
 		transform: translateX(100vw);
 	}
-}
-
-.menu-close {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 2rem;
-	height: 2rem;
-	margin: 1rem 1rem;
-}
-
-.menu-home {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 2rem;
-	height: 2rem;
-	margin: 1rem 1rem;
 }

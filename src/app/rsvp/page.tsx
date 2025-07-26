@@ -207,27 +207,29 @@ export default function RSVP() {
 	};
 
 	return (
-		<div className="page-rsvp">
-			<h1 className="page-rsvp-title">RSVP</h1>
-			{guestListSearch()}
-			{guestFullName ? (
-				<>
-					<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
-					<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
-						{sectionAttendance()}
-						{isAttending ? (
-							sectionDietry()
-						) : (
-							<div>We are sorry you won&apos;t be able to join us on this day.</div>
-						)}
-						{isAttending && needsDietChange ? sectionDietrySelections() : null}
-						{isAttending && needsDietChange && needsOtherDietChange ? sectionNeedsOther() : null}
-						<button type="submit" className="page-rsvp-submit-button">
-							Submit
-						</button>
-					</form>
-				</>
-			) : null}
-		</div>
+		<>
+			<h1 className="page-title">RSVP</h1>
+			<div className="page-rsvp">
+				{guestListSearch()}
+				{guestFullName ? (
+					<>
+						<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
+						<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
+							{sectionAttendance()}
+							{isAttending ? (
+								sectionDietry()
+							) : (
+								<div>We are sorry you won&apos;t be able to join us on this day.</div>
+							)}
+							{isAttending && needsDietChange ? sectionDietrySelections() : null}
+							{isAttending && needsDietChange && needsOtherDietChange ? sectionNeedsOther() : null}
+							<button type="submit" className="page-rsvp-submit-button">
+								Submit
+							</button>
+						</form>
+					</>
+				) : null}
+			</div>
+		</>
 	);
 }
