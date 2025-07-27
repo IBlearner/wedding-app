@@ -1,8 +1,27 @@
-.page-schedule-body {
+.page-schedule {
+	margin-left: 1.25rem;
 	border-left: 1px solid var(--dark-grey);
-	padding-left: 2rem;
+	border-left-style: dashed;
 
 	> div {
-		margin-bottom: 1rem;
+		margin-bottom: 1.75rem;
 	}
+}
+
+.schedule-record {
+	position: relative;
+}
+
+.schedule-time {
+	position: absolute;
+	left: -28px;
+	display: inline-block; // Required because it's a span element
+	color: var(--bg);
+	background-color: var(--dark-grey);
+	padding: 0.1rem 0.4rem 0.4rem 0.4rem;
+	max-width: 36px;
+}
+
+.schedule-title {
+	margin-left: 2.25rem;
 }

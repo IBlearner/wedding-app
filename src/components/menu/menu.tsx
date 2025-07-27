@@ -30,7 +30,7 @@ export default function Menu() {
 			<button className="menu-button" onClick={() => setIsOpen(true)}>
 				<MenuIcon />
 			</button>
-			<div className={`menu-overlay ${isOpen ? "open" : "close"}`}></div>
+			<div className={`menu-overlay ${isOpen ? "open" : "close"}`} onClick={() => setIsOpen(false)}></div>
 			<div className={`menu ${isOpen ? "open" : "close"}`}>
 				<button className="menu-close" onClick={() => setIsOpen(false)}>
 					<X />
