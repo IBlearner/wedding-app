@@ -1,0 +1,26 @@
+@mixin box-shadow() {
+	box-shadow: 3px 7px 11px 0px #0003, 0 6px 20px #00000030;
+	box-shadow: 3px 7px 11px 0px #0003, 0 6px 20px #c7bf294d;
+}
+
+@mixin button-style($width: 5rem) {
+	all: unset;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: $width;
+	padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+	background-color: var(--dark-grey);
+	color: var(--bg);
+	border-radius: 4px;
+
+	transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+	&:hover {
+		background-color: var(--gold);
+		transform: translateY(-2px);
+		color: var(--foreground);
+	}
+}

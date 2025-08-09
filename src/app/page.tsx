@@ -10,14 +10,14 @@ export default function Home() {
 			<div className="centre_container">
 				<Image className="home_image" src={myImage} width={300} height={400} alt="home_picture" />
 				<h1 className="name_heading">
-					Samantha
-					<br /> <span className="centered-and">and</span>
 					Kien Vi
+					<br /> <span className="centered-and">and</span>
+					Samantha
 				</h1>
 				<main>
 					<div>
 						<Link href="/rsvp">
-							<button className="rsvp-button" rel="noopener noreferrer">
+							<button id="home-page-rsvp-button" rel="noopener noreferrer">
 								RSVP
 							</button>
 						</Link>

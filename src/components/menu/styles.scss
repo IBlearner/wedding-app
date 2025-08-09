@@ -62,12 +62,19 @@
 			flex-direction: row;
 			align-items: center;
 			margin-left: 2rem;
-			padding: 1rem 1rem 1rem 0;
+			padding: 1.25rem 1rem 0.5rem 0;
 			width: fit-content;
 			cursor: pointer;
+			border-bottom: 5px solid transparent;
 
 			> svg {
 				margin-right: 1rem;
+			}
+
+			&:hover,
+			&:active {
+				border-color: var(--gold);
+				color: var(--gold);
 			}
 		}
 	}

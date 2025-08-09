@@ -1,5 +1,14 @@
+@use "../../assets//stylesheets/mixins" as *;
+
 .page-t\&a {
 	> div {
 		margin-bottom: 1rem;
 	}
+}
+
+#t\&a-booking-link {
+	@include button-style();
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Menu from "../components/menu/menu";
-import "./globals.scss";
+import "../assets/stylesheets/globals.scss";
 import { Cormorant } from "next/font/google";
 
 const dancingScript = Cormorant({

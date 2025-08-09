@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { guestList } from "@/data/constants";
 import { capitaliseString } from "@/helpers/stringUtils";
 import "./styles.scss";
+import { MoveRight } from "lucide-react";
 
 export default function RSVP() {
 	const [search, setSearch] = useState<string>("");
 	const [guestId, setGuestId] = useState<number>(0);
 	const [guestFullName, setGuestFullName] = useState<string>("mark mendoza"); // Only used to display their name
-	const [error, setError] = useState<boolean>(false);
+	const [searchError, setSearchError] = useState<boolean>(false);
 	const [isAttending, setIsAttending] = useState<boolean>(false);
 	const [needsDietChange, setNeedsDietChange] = useState<boolean>(false);
 	const [vegetarian, setVegetarian] = useState<boolean>(false);
@@ -44,7 +45,7 @@ export default function RSVP() {
 		if (guest) {
 			setGuestId(guest.id);
 			setGuestFullName(`${capitaliseString(guest.fName)} ${capitaliseString(guest.lName)}`);
-			setError(false);
+			setSearchError(false);
 			setIsAttending(false);
 			setNeedsDietChange(false);
 			setVegetarian(false);
@@ -56,7 +57,7 @@ export default function RSVP() {
 		} else {
 			setGuestId(0);
 			setGuestFullName("");
-			setError(true);
+			setSearchError(true);
 		}
 	};
 
@@ -90,13 +91,12 @@ export default function RSVP() {
 
 	const guestListSearch = () => {
 		return (
-			<form className="page-rsvp-name-search" onSubmit={handleSearchSubmit}>
-				<label htmlFor="guestlist-search"></label>
-				<input id="guestlist-search" type="text" onChange={handleSearchInput} placeholder="Enter your name" />
-				<button type="submit" disabled={isGuestListSearchDisabled()}>
-					Search
+			<form id="page-rsvp-name-search" onSubmit={handleSearchSubmit}>
+				<label id="name-search-label" htmlFor="name-search"></label>
+				<input id="name-search" type="text" onChange={handleSearchInput} placeholder="Enter your name" />
+				<button className="page-rsvp-name-search-button" type="submit" disabled={isGuestListSearchDisabled()}>
+					<MoveRight />
 				</button>
-				<div>{error ? "Could not find you. Please try again." : null}</div>
 			</form>
 		);
 	};
@@ -116,7 +116,7 @@ export default function RSVP() {
 
 	const sectionAttendance = () => {
 		return (
-			<fieldset className="attendance-fieldset">
+			<fieldset className="rsvp-fieldset section-attendance">
 				<legend>Will you be attending?</legend>
 				{yesNoButtons(
 					isAttending,
@@ -129,7 +129,7 @@ export default function RSVP() {
 
 	const sectionDietry = () => {
 		return (
-			<fieldset>
+			<fieldset className="rsvp-fieldset section-dietry">
 				<legend>Do you have any dietry requirements?</legend>
 				{yesNoButtons(
 					needsDietChange,
@@ -142,7 +142,7 @@ export default function RSVP() {
 
 	const sectionDietrySelections = () => {
 		return (
-			<fieldset className="section-dietry-selections">
+			<fieldset className="rsvp-fieldset section-dietry-selections">
 				<legend>Select dietary preferences:</legend>
 				<input
 					type="checkbox"
@@ -194,7 +194,7 @@ export default function RSVP() {
 
 	const sectionNeedsOther = () => {
 		return (
-			<fieldset>
+			<fieldset className="rsvp-fieldset section-other">
 				<legend>Specify other dietry requirements.</legend>
 				<input
 					id="other-dietry-requirements"
@@ -211,6 +211,7 @@ export default function RSVP() {
 			<h1 className="page-title">RSVP</h1>
 			<div className="page-rsvp">
 				{guestListSearch()}
+				{searchError ? <div id="page-rsvp-name-search-error">Could not find you. Please try again.</div> : null}
 				{guestFullName ? (
 					<>
 						<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
