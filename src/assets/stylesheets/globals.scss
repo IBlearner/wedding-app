@@ -5,6 +5,8 @@
 	--bg: whitesmoke;
 	--dark-grey: #252525;
 	--gold: #d3af37;
+	--mocha: #d3c8bb;
+	--mocha-dark: #71462a;
 }
 
 // @media (prefers-color-scheme: dark) {
@@ -28,6 +30,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	padding: 4rem 2.5rem 2rem 2.5rem;
+	background-color: transparent;
 
 	@media (min-width: 481px) {
 		padding: 4rem 30vw;

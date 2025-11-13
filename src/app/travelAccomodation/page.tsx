@@ -1,4 +1,5 @@
 import "./styles.scss";
+import { ExternalLink } from "lucide-react";
 
 export default function TravelAccomodation() {
 	return (
@@ -16,7 +17,7 @@ export default function TravelAccomodation() {
 					<strong>Phone:</strong> (07) 3221 1999
 				</div>
 				<a id="t&a-booking-link" href="https://www.google.com" target="_blank">
-					Book here
+					Book here <ExternalLink size="16px" />
 				</a>
 			</div>
 		</>

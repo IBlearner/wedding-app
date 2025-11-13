@@ -25,42 +25,42 @@ export const guestList = [
 		lName: "test"
 	},
 	{
-		id: 0,
+		id: 6,
 		fName: "mark",
 		lName: "test"
 	},
 	{
-		id: 0,
+		id: 7,
 		fName: "test",
 		lName: "salas"
 	},
 	{
-		id: 0,
+		id: 8,
 		fName: "test",
 		lName: "tho"
 	},
 	{
-		id: 0,
+		id: 9,
 		fName: "test",
 		lName: "tho"
 	},
 	{
-		id: 0,
+		id: 10,
 		fName: "test",
 		lName: "tho"
 	},
 	{
-		id: 0,
+		id: 11,
 		fName: "my",
 		lName: "test"
 	},
 	{
-		id: 0,
+		id: 12,
 		fName: "co",
 		lName: "7"
 	},
 	{
-		id: 0,
+		id: 12,
 		fName: "duong",
 		lName: "7"
 	},

@@ -1,4 +1,4 @@
-@use "../../assets//stylesheets/mixins" as *;
+@use "../../assets/stylesheets/mixins" as *;
 
 .page-rsvp {
 	display: flex;
@@ -47,14 +47,15 @@
 	display: flex;
 	gap: 1.5rem;
 	justify-content: center;
+	padding: 5px 0;
 
 	button {
 		@include button-style(3rem);
 
 		&:not(.selected) {
-			background-color: transparent;
-			color: #333;
-			border: 1px solid var(--dark-grey);
+			background-color: var(--bg);
+			color: var(--mocha-dark);
+			border: 1px solid var(--white);
 		}
 	}
 }
@@ -69,7 +70,30 @@
 }
 
 .rsvp-fieldset {
-	@include box-shadow();
+	// @include box-shadow();
+	background-color: var(--mocha);
+	border: 2px solid var(--mocha-dark);
+
+	legend {
+		width: 220px;
+		background-color: var(--mocha-dark);
+		color: var(--white);
+		padding: 3px 5px;
+		border: 2px solid var(--mocha-dark);
+		font-weight: bold;
+	}
+
+	label {
+		color: var(--mocha-dark);
+	}
+
+	#other-dietry-requirements {
+		all: unset;
+		border-bottom: 1px solid var(--mocha-dark);
+		color: var(--mocha-dark);
+		background-color: var(--white);
+		height: 40px;
+	}
 }
 
 .page-rsvp-submit-button {

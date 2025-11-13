@@ -6,11 +6,13 @@ import "./styles.scss";
 import { MoveRight } from "lucide-react";
 
 export default function RSVP() {
+	// Raw input value
 	const [search, setSearch] = useState<string>("");
+	// Guest data
 	const [guestId, setGuestId] = useState<number>(0);
-	const [guestFullName, setGuestFullName] = useState<string>("mark mendoza"); // Only used to display their name
-	const [searchError, setSearchError] = useState<boolean>(false);
+	const [guestFullName, setGuestFullName] = useState<string>(""); // Only used to display their name
 	const [isAttending, setIsAttending] = useState<boolean>(false);
+	// Guest diet data
 	const [needsDietChange, setNeedsDietChange] = useState<boolean>(false);
 	const [vegetarian, setVegetarian] = useState<boolean>(false);
 	const [vegan, setVegan] = useState<boolean>(false);
@@ -18,47 +20,87 @@ export default function RSVP() {
 	const [gluten, setGluten] = useState<boolean>(false);
 	const [needsOtherDietChange, setNeedsOtherDietChange] = useState<boolean>(false);
 	const [other, setOther] = useState<string>("");
+	// Error triggers
+	const [guestAlreadyResponded, setGuestAlreadyResponded] = useState<boolean>(false);
+	const [searchError, setSearchError] = useState<boolean>(false);
+	const [otherError, setOtherError] = useState<boolean>(false);
+	// Page state
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isThankyouMessage, setIsThankyouMessage] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!needsDietChange) {
-			setVegetarian(false);
-			setVegan(false);
-			setDairy(false);
-			setGluten(false);
-			setNeedsOtherDietChange(false);
-			setOther("");
+			resetDietryData();
 		}
 	}, [needsDietChange]);
 
+	const resetErrors = () => {
+		setSearchError(false);
+		setGuestAlreadyResponded(false);
+		setOtherError(false);
+	};
+
+	const resetDietryData = () => {
+		setVegetarian(false);
+		setVegan(false);
+		setDairy(false);
+		setGluten(false);
+		setNeedsOtherDietChange(false);
+		setOther("");
+	};
+
+	const resetMostData = () => {
+		setIsAttending(false);
+		resetDietryData();
+		// Reset errors
+		resetErrors();
+	};
+
+	const resetAllData = () => {
+		setGuestId(0);
+		setGuestFullName("");
+		setIsThankyouMessage(false);
+		resetMostData();
+	};
+
 	const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+		// TODO: reset error messages after user types
 		setSearch(event.target.value);
 	};
 
-	const handleSearchSubmit = (event: React.FormEvent<HTMLElement>) => {
+	const handleSearchSubmit = async (event: React.FormEvent<HTMLElement>) => {
 		event.preventDefault();
+
+		// Ensure everything is reset
+		resetAllData();
+		// Set page as loading
+		setIsLoading(true);
 
 		const guest = guestList.find((guest) => {
 			const guestFullName = `${guest.fName} ${guest.lName}`;
 			return guestFullName.includes(search);
 		});
 
+		// If guest is found, initialise everything to default values
 		if (guest) {
 			setGuestId(guest.id);
 			setGuestFullName(`${capitaliseString(guest.fName)} ${capitaliseString(guest.lName)}`);
-			setSearchError(false);
-			setIsAttending(false);
-			setNeedsDietChange(false);
-			setVegetarian(false);
-			setVegan(false);
-			setDairy(false);
-			setGluten(false);
-			setNeedsOtherDietChange(false);
-			setOther("");
+
+			// Check if user has already responded
+			const res = await fetch(`/api/rsvp?id=${guest.id}`);
+			const data = await res.json();
+
+			// If they have, show blocked content
+			if (data.responded) {
+				setGuestAlreadyResponded(true);
+			}
 		} else {
 			setGuestId(0);
 			setGuestFullName("");
 			setSearchError(true);
 		}
+
+		setIsLoading(false);
 	};
 
 	const handleDietryInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +109,7 @@ export default function RSVP() {
 		setOther(event.target.value);
 	};
 
-	const handleRsvpSubmit = (event: React.FormEvent<HTMLElement>) => {
+	const handleRsvpSubmit = async (event: React.FormEvent<HTMLElement>) => {
 		event.preventDefault();
 
 		const response = isAttending
@@ -80,8 +122,21 @@ export default function RSVP() {
 					gluten: gluten,
 					other: other
 			  }
-			: {};
-		console.log(response);
+			: { id: guestId };
+
+		const res = await fetch("/api/rsvp", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(response)
+		});
+
+		if (res.ok) {
+			setIsThankyouMessage(true);
+		} else {
+			setOtherError(true);
+		}
 	};
 
 	const isGuestListSearchDisabled = () => {
@@ -104,10 +159,10 @@ export default function RSVP() {
 	const yesNoButtons = (state: boolean, noAction: () => void, yesAction: () => void) => {
 		return (
 			<div className="yes-no-buttons">
-				<button className={!state ? "selected" : ""} onClick={() => noAction()}>
+				<button className={!state ? "selected" : ""} onClick={() => noAction()} type="button">
 					No
 				</button>
-				<button className={state ? "selected" : ""} onClick={() => yesAction()}>
+				<button className={state ? "selected" : ""} onClick={() => yesAction()} type="button">
 					Yes
 				</button>
 			</div>
@@ -206,30 +261,45 @@ export default function RSVP() {
 		);
 	};
 
+	const getContent = () => {
+		if (searchError) {
+			return <div id="page-rsvp-name-search-error">Could not find you. Please try again.</div>;
+		} else if (guestAlreadyResponded) {
+			return (
+				<div id="page-rsvp-name-search-error">
+					You have already responded. If this is wrong, please contact the couple.
+				</div>
+			);
+		} else if (otherError) {
+			return <div id="page-rsvp-name-search-error">Error saving your RSVP. Please try again later.</div>;
+		} else if (isThankyouMessage) {
+			return <div>Thank you for responding.</div>;
+		} else if (guestFullName) {
+			return (
+				<>
+					<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
+					<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
+						{sectionAttendance()}
+						{isAttending ? sectionDietry() : null}
+						{isAttending && needsDietChange ? sectionDietrySelections() : null}
+						{isAttending && needsDietChange && needsOtherDietChange ? sectionNeedsOther() : null}
+						<button type="submit" className="page-rsvp-submit-button">
+							Submit
+						</button>
+					</form>
+				</>
+			);
+		} else {
+			return <div>Please search for your name.</div>;
+		}
+	};
+
 	return (
 		<>
 			<h1 className="page-title">RSVP</h1>
 			<div className="page-rsvp">
 				{guestListSearch()}
-				{searchError ? <div id="page-rsvp-name-search-error">Could not find you. Please try again.</div> : null}
-				{guestFullName ? (
-					<>
-						<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
-						<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
-							{sectionAttendance()}
-							{isAttending ? (
-								sectionDietry()
-							) : (
-								<div>We are sorry you won&apos;t be able to join us on this day.</div>
-							)}
-							{isAttending && needsDietChange ? sectionDietrySelections() : null}
-							{isAttending && needsDietChange && needsOtherDietChange ? sectionNeedsOther() : null}
-							<button type="submit" className="page-rsvp-submit-button">
-								Submit
-							</button>
-						</form>
-					</>
-				) : null}
+				{!isLoading ? getContent() : null}
 			</div>
 		</>
 	);
