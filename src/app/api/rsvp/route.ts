@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const checkUserResponded = (json: any, id: number) => {
 	return json.responded.includes(id);
 };
