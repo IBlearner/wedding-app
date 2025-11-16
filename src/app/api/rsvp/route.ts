@@ -1,75 +1,65 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
+import { createClient } from "redis";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const checkUserResponded = (json: any, id: number) => {
-	return json.responded.includes(id);
+const client = await createClient({ url: process.env.REDIS_URL }).connect();
+
+const checkUserResponded = async (id: string) => {
+	if (!client) throw new Error("Redis client not working.");
+	const data = await client.get(id);
+	return !!data;
 };
 
 export async function POST(request: Request) {
-	const data = await request.json();
-	const dbPath = path.join(process.cwd(), "src/data/db.json");
-
 	try {
-		const file = await fs.readFile(dbPath, "utf-8");
-		const json = JSON.parse(file);
-
+		const data = await request.json();
 		const response = data;
-		const userId = data.id;
+		const userId = JSON.stringify(data.id); // Needs to be a string for the database
+
+		// Validate the ID
+		if (!userId) {
+			return NextResponse.json({ message: "Missing or invalid ID" }, { status: 400 });
+		}
+
 		// Check the payload received is valid
-		if (!response || !JSON.stringify(userId)) throw new Error("Could not get user response.");
+		if (!response || !userId) throw new Error("Could not get user response.");
 
-		// Check to see if user already responded, and forbid another response
-		const hasUserResponded = checkUserResponded(json, userId);
-		if (hasUserResponded) {
-			return NextResponse.json({ message: "User already responded" }, { status: 409 });
+		// Check if the user has responded
+		const userHasResponded = await checkUserResponded(userId);
+
+		if (userHasResponded) {
+			return NextResponse.json({ message: "User already responded", responded: true }, { status: 409 });
 		} else {
-			// Add user to the responded array
-			json.responded.push(userId);
-
-			// If there is only one key, the id, this means they declined
-			if (Object.keys(response).length === 1) {
-				json.notAttending.push(response);
-			} else {
-				json.attending.push(response);
-			}
-
-			// Write data to file
-			await fs.writeFile(dbPath, JSON.stringify(json, null, 2));
+			delete response.id;
+			// Add entry to the database
+			await client.set(userId, JSON.stringify(response));
 
 			return NextResponse.json({ message: "RSVP saved" }, { status: 200 });
 		}
 	} catch (error) {
 		console.error(error);
-		return NextResponse.json({ message: "Failed to save RSVP" }, { status: 500 });
+		return NextResponse.json({ message: "Failed to get RSVP details." }, { status: 500 });
 	}
 }
 
 export async function GET(request: Request) {
 	const { searchParams } = new URL(request.url);
-	const idParam = searchParams.get("id");
-	const id = Number(idParam);
-	const dbPath = path.join(process.cwd(), "src/data/db.json");
+	const id = searchParams.get("id");
 
 	// Validate the ID
-	if (!idParam || isNaN(id)) {
+	if (!id) {
 		return NextResponse.json({ message: "Missing or invalid ID" }, { status: 400 });
 	}
 
 	try {
-		const file = await fs.readFile(dbPath, "utf-8");
-		const json = JSON.parse(file);
-
+		const userHasResponded = await checkUserResponded(id);
 		// Check if the user has responded
-		const hasUserResponded = checkUserResponded(json, id);
-		if (hasUserResponded) {
+		if (userHasResponded) {
 			return NextResponse.json({ message: "User already responded", responded: true }, { status: 409 });
 		} else {
 			return NextResponse.json({ responded: false }, { status: 200 });
 		}
 	} catch (error) {
 		console.error(error);
-		return NextResponse.json({ message: "Failed to ge RSVP details." }, { status: 500 });
+		return NextResponse.json({ message: "Failed to get RSVP details." }, { status: 500 });
 	}
 }
