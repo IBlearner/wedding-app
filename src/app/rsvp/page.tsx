@@ -77,8 +77,8 @@ export default function RSVP() {
 		setIsLoading(true);
 
 		const guest = guestList.find((guest) => {
-			const guestFullName = `${guest.fName} ${guest.lName}`;
-			return guestFullName.includes(search);
+			const guestFullName = `${guest.fName} ${guest.lName}`.toLowerCase();
+			return guestFullName.includes(search.toLowerCase());
 		});
 
 		// If guest is found, initialise everything to default values
