@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { guestList } from "@/data/constants";
 import { capitaliseString } from "@/helpers/stringUtils";
 import "./styles.scss";
-import { MoveRight } from "lucide-react";
+import { MoveRight, LoaderCircle } from "lucide-react";
 
 export default function RSVP() {
 	// Raw input value
@@ -299,7 +299,13 @@ export default function RSVP() {
 			<h1 className="page-title">RSVP</h1>
 			<div className="page-rsvp">
 				{guestListSearch()}
-				{!isLoading ? getContent() : null}
+				{!isLoading ? (
+					getContent()
+				) : (
+					<div>
+						<LoaderCircle className="page-rsvp-loader" size="48px" color="var(--mocha)" />
+					</div>
+				)}
 			</div>
 		</>
 	);
