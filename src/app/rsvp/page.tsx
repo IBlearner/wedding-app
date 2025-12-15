@@ -267,7 +267,7 @@ export default function RSVP() {
 		} else if (guestAlreadyResponded) {
 			return (
 				<div id="page-rsvp-name-search-error">
-					You have already responded. If this is wrong, please contact the couple.
+					You have already responded. If you wish to amend your response, please contact the couple.
 				</div>
 			);
 		} else if (otherError) {

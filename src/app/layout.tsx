@@ -21,7 +21,7 @@ export default function RootLayout({
 		<html lang="en" className={dancingScript.className}>
 			<body>
 				<Menu />
-				{children}
+				<div className="page">{children}</div>
 			</body>
 		</html>
 	);

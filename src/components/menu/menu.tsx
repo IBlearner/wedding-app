@@ -36,6 +36,10 @@ export default function Menu() {
 					<X />
 				</button>
 				<ul>
+					<li onClick={() => navigateTo("/")}>
+						<House />
+						Home
+					</li>
 					<li onClick={() => navigateTo("/rsvp")}>
 						<MailQuestionMark />
 						RSVP

@@ -1,3 +1,5 @@
+@use "../../assets/stylesheets/variables" as *;
+
 .menu-button,
 .menu-close,
 .menu-home {
@@ -13,6 +15,11 @@
 	background-color: transparent;
 	border: none;
 	color: var(--dark-grey);
+
+	// Desktop mode
+	@media (min-width: $mobile-breakpoint) {
+		display: none;
+	}
 }
 
 .menu-close {
@@ -50,12 +57,22 @@
 	transform: translateX(0);
 	width: 75vw;
 	height: 100vh;
-	background-color: var(--dark-grey);
+	background-color: var(--mocha-dark);
 	transition: transform 0.5s ease;
 	color: var(--bg);
 
 	> ul {
 		margin-top: 3rem;
+
+		// Desktop mode
+		@media (min-width: $mobile-breakpoint) {
+			margin-top: 0;
+		}
+
+		// Remove the desktop home button
+		> li:first-child {
+			display: none;
+		}
 
 		> li {
 			display: flex;
@@ -72,12 +89,44 @@
 
 			&:hover,
 			&:active {
-				color: var(--gold);
+				text-decoration: underline;
+				text-underline-offset: 6px;
+
+				transform: translateY(-3px);
 			}
+
+			transition: transform 0.2s ease;
 		}
 	}
 
 	&.close {
 		transform: translateX(100vw);
+	}
+}
+
+// Desktop mode
+@media (min-width: $mobile-breakpoint) {
+	.menu.close {
+		transform: unset;
+		position: relative;
+		width: 100%;
+		height: 100%;
+
+		ul {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			padding: 0 2rem;
+
+			// Add desktop home button to toolbar
+			> li:first-child {
+				display: flex;
+			}
+
+			> li {
+				padding: 1rem;
+				margin: 0;
+			}
+		}
 	}
 }

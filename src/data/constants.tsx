@@ -1,8 +1,8 @@
 export const guestList = [
 	{
 		id: 1,
-		fName: "tessstt",
-		lName: "teestsetst"
+		fName: "Rosanne",
+		lName: "Morterra"
 	},
 	{
 		id: 2,
