@@ -3,9 +3,28 @@
 .page-rsvp {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	max-height: 1000px;
 	gap: 2rem;
 	text-align: center;
+	opacity: 1;
+
+	transition:
+		max-height 1s ease,
+		opacity 0.5s ease;
+
+	&.hidden {
+		max-height: 0;
+		opacity: 0;
+	}
+}
+
+.page-rsvp-thankyou {
+	opacity: 0;
+	transition: opacity 0.8s ease-in-out;
+
+	&.visible {
+		opacity: 1;
+	}
 }
 
 #page-rsvp-name-search {
@@ -70,29 +89,34 @@
 }
 
 .rsvp-fieldset {
-	// @include box-shadow();
 	background-color: var(--mocha);
-	border: 2px solid var(--mocha-dark);
+	border: 0px;
+	padding: 0;
 
 	legend {
-		width: 220px;
+		width: 80%;
+		padding: 4px 8px;
 		background-color: var(--mocha-dark);
 		color: var(--white);
-		padding: 3px 5px;
-		border: 2px solid var(--mocha-dark);
 		font-weight: bold;
 	}
 
-	label {
-		color: var(--mocha-dark);
-	}
+	.rsvp-fieldset-options {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 24px;
+		padding: 10px;
 
-	#other-dietry-requirements {
-		all: unset;
-		border-bottom: 1px solid var(--mocha-dark);
-		color: var(--mocha-dark);
-		background-color: var(--white);
-		height: 40px;
+		label {
+			span {
+				margin-right: 8px;
+			}
+
+			input[type="radio"] {
+				transform: scale(1.5);
+			}
+		}
 	}
 }
 

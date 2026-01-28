@@ -11,15 +11,10 @@ export default function RSVP() {
 	// Guest data
 	const [guestId, setGuestId] = useState<number>(0);
 	const [guestFullName, setGuestFullName] = useState<string>(""); // Only used to display their name
+	// Guest details
 	const [isAttending, setIsAttending] = useState<boolean>(false);
-	// Guest diet data
-	const [needsDietChange, setNeedsDietChange] = useState<boolean>(false);
-	const [vegetarian, setVegetarian] = useState<boolean>(false);
-	const [vegan, setVegan] = useState<boolean>(false);
-	const [dairy, setDairy] = useState<boolean>(false);
-	const [gluten, setGluten] = useState<boolean>(false);
-	const [needsOtherDietChange, setNeedsOtherDietChange] = useState<boolean>(false);
-	const [other, setOther] = useState<string>("");
+	const [dietryReqs, setDietryReqs] = useState<string>("");
+	const [isPerforming, setIsPerforming] = useState<boolean>(false);
 	// Error triggers
 	const [guestAlreadyResponded, setGuestAlreadyResponded] = useState<boolean>(false);
 	const [searchError, setSearchError] = useState<boolean>(false);
@@ -28,39 +23,47 @@ export default function RSVP() {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isThankyouMessage, setIsThankyouMessage] = useState<boolean>(false);
 
+	// Reset input data on attendance switch
 	useEffect(() => {
-		if (!needsDietChange) {
-			resetDietryData();
-		}
-	}, [needsDietChange]);
+		setDietryReqs("");
+		setIsPerforming(false);
+	}, [isAttending]);
 
+	// Reset guest
+	const resetGuest = () => {
+		setGuestId(0);
+		setGuestFullName("");
+	};
+
+	// Reset guest details
+	const resetGuestDetails = () => {
+		setIsAttending(false);
+		setDietryReqs("");
+		setIsPerforming(false);
+	};
+
+	// Reset errors
 	const resetErrors = () => {
 		setSearchError(false);
 		setGuestAlreadyResponded(false);
 		setOtherError(false);
 	};
 
-	const resetDietryData = () => {
-		setVegetarian(false);
-		setVegan(false);
-		setDairy(false);
-		setGluten(false);
-		setNeedsOtherDietChange(false);
-		setOther("");
-	};
-
-	const resetMostData = () => {
-		setIsAttending(false);
-		resetDietryData();
-		// Reset errors
-		resetErrors();
+	// Reset page states
+	const resetPageStates = () => {
+		setIsLoading(false);
+		setIsThankyouMessage(false);
 	};
 
 	const resetAllData = () => {
-		setGuestId(0);
-		setGuestFullName("");
-		setIsThankyouMessage(false);
-		resetMostData();
+		// Reset guest
+		resetGuest();
+		// Reset guest details
+		resetGuestDetails();
+		// Reset errors
+		resetErrors();
+		// Reset page states
+		resetPageStates();
 	};
 
 	const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +93,8 @@ export default function RSVP() {
 			const res = await fetch(`/api/rsvp?id=${guest.id}`);
 			const data = await res.json();
 
+			console.log(data);
+
 			// If they have, show blocked content
 			if (data.responded) {
 				setGuestAlreadyResponded(true);
@@ -103,26 +108,15 @@ export default function RSVP() {
 		setIsLoading(false);
 	};
 
-	const handleDietryInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		event.preventDefault();
-
-		setOther(event.target.value);
-	};
-
 	const handleRsvpSubmit = async (event: React.FormEvent<HTMLElement>) => {
 		event.preventDefault();
 
-		const response = isAttending
-			? {
-					id: guestId,
-					needsDietChange: needsDietChange,
-					vegetarian: vegetarian,
-					vegan: vegan,
-					dairy: dairy,
-					gluten: gluten,
-					other: other
-			  }
-			: { id: guestId };
+		const response = {
+			id: guestId,
+			isAttending: isAttending,
+			dietryReqs: dietryReqs,
+			isPerforming: isPerforming
+		};
 
 		const res = await fetch("/api/rsvp", {
 			method: "POST",
@@ -131,6 +125,7 @@ export default function RSVP() {
 			},
 			body: JSON.stringify(response)
 		});
+		console.log(response);
 
 		if (res.ok) {
 			setIsThankyouMessage(true);
@@ -156,107 +151,92 @@ export default function RSVP() {
 		);
 	};
 
-	const yesNoButtons = (state: boolean, noAction: () => void, yesAction: () => void) => {
-		return (
-			<div className="yes-no-buttons">
-				<button className={!state ? "selected" : ""} onClick={() => noAction()} type="button">
-					No
-				</button>
-				<button className={state ? "selected" : ""} onClick={() => yesAction()} type="button">
-					Yes
-				</button>
-			</div>
-		);
-	};
+	// const yesNoButtons = (state: boolean, noAction: () => void, yesAction: () => void) => {
+	// 	return (
+	// 		<div className="yes-no-buttons">
+	// 			<button className={!state ? "selected" : ""} onClick={() => noAction()} type="button">
+	// 				No
+	// 			</button>
+	// 			<button className={state ? "selected" : ""} onClick={() => yesAction()} type="button">
+	// 				Yes
+	// 			</button>
+	// 		</div>
+	// 	);
+	// };
 
 	const sectionAttendance = () => {
 		return (
-			<fieldset className="rsvp-fieldset section-attendance">
-				<legend>Will you be attending?</legend>
-				{yesNoButtons(
-					isAttending,
-					() => setIsAttending(false),
-					() => setIsAttending(true)
-				)}
+			<fieldset className="rsvp-fieldset fieldset-attendance">
+				<legend>Will you be attending the wedding?</legend>
+				<div className="rsvp-fieldset-options">
+					<label htmlFor="attendance">
+						<span>Yes</span>
+						<input
+							type="radio"
+							name="attendance"
+							value="yes"
+							checked={isAttending}
+							onChange={() => setIsAttending(true)}
+						/>
+					</label>
+					<label htmlFor="attendance">
+						<span>No</span>
+						<input
+							type="radio"
+							name="attendance"
+							value="no"
+							checked={!isAttending}
+							onChange={() => setIsAttending(false)}
+						/>
+					</label>
+				</div>
 			</fieldset>
 		);
 	};
 
-	const sectionDietry = () => {
+	const sectionDietryReqs = () => {
 		return (
-			<fieldset className="rsvp-fieldset section-dietry">
-				<legend>Do you have any dietry requirements?</legend>
-				{yesNoButtons(
-					needsDietChange,
-					() => setNeedsDietChange(false),
-					() => setNeedsDietChange(true)
-				)}
+			<fieldset className="rsvp-fieldset fieldset-attendance">
+				<legend>Please specify any dietry requirements.</legend>
+				<label htmlFor="dietry-reqs">
+					<input
+						type="text"
+						placeholder="Please let us know what you cannot consume."
+						name="dietry-reqs"
+						value={dietryReqs}
+						onChange={(e) => setDietryReqs(e.target.value)}
+					/>
+				</label>
 			</fieldset>
 		);
 	};
 
-	const sectionDietrySelections = () => {
+	const sectionPerformance = () => {
 		return (
-			<fieldset className="rsvp-fieldset section-dietry-selections">
-				<legend>Select dietary preferences:</legend>
-				<input
-					type="checkbox"
-					id="vegetarian"
-					name="preferences"
-					value="vegetarian"
-					onChange={(e) => setVegetarian(e.target.checked)}
-				/>
-				<label htmlFor="vegetarian">Vegetarian</label>
-				<br />
-				<input
-					type="checkbox"
-					id="vegan"
-					name="preferences"
-					value="vegan"
-					onChange={(e) => setVegan(e.target.checked)}
-				/>
-				<label htmlFor="vegan">Vegan</label>
-				<br />
-				<input
-					type="checkbox"
-					id="dairy"
-					name="preferences"
-					value="dairy"
-					onChange={(e) => setDairy(e.target.checked)}
-				/>
-				<label htmlFor="dairy">Dairy</label>
-				<br />
-				<input
-					type="checkbox"
-					id="gluten"
-					name="preferences"
-					value="gluten"
-					onChange={(e) => setGluten(e.target.checked)}
-				/>
-				<label htmlFor="gluten">Gluten</label>
-				<br />
-				<input
-					type="checkbox"
-					id="other"
-					name="preferences"
-					value="other"
-					onChange={(e) => setNeedsOtherDietChange(e.target.checked)}
-				/>
-				<label htmlFor="other">Other</label>
-			</fieldset>
-		);
-	};
-
-	const sectionNeedsOther = () => {
-		return (
-			<fieldset className="rsvp-fieldset section-other">
-				<legend>Specify other dietry requirements.</legend>
-				<input
-					id="other-dietry-requirements"
-					type="text"
-					onChange={handleDietryInput}
-					placeholder="Enter your requirements"
-				/>
+			<fieldset className="rsvp-fieldset fieldset-performance">
+				<legend>Would you like to contribute a performance?</legend>
+				<div className="rsvp-fieldset-options">
+					<label htmlFor="performing">
+						<span>Yes</span>
+						<input
+							type="radio"
+							name="performing"
+							value="yes"
+							checked={isPerforming}
+							onChange={() => setIsPerforming(true)}
+						/>
+					</label>
+					<label htmlFor="performing">
+						<span>No</span>
+						<input
+							type="radio"
+							name="performing"
+							value="no"
+							checked={!isPerforming}
+							onChange={() => setIsPerforming(false)}
+						/>
+					</label>
+				</div>
 			</fieldset>
 		);
 	};
@@ -272,17 +252,17 @@ export default function RSVP() {
 			);
 		} else if (otherError) {
 			return <div id="page-rsvp-name-search-error">Error saving your RSVP. Please try again later.</div>;
-		} else if (isThankyouMessage) {
-			return <div>Thank you for responding.</div>;
 		} else if (guestFullName) {
 			return (
 				<>
 					<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
 					<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
 						{sectionAttendance()}
-						{isAttending ? sectionDietry() : null}
-						{isAttending && needsDietChange ? sectionDietrySelections() : null}
-						{isAttending && needsDietChange && needsOtherDietChange ? sectionNeedsOther() : null}
+						{isAttending ? sectionDietryReqs() : null}
+						{isAttending ? sectionPerformance() : null}
+						{isPerforming ? (
+							<div>Fantastic! Please reach out to Samantha to organise your performance.</div>
+						) : null}
 						<button type="submit" className="page-rsvp-submit-button">
 							Submit
 						</button>
@@ -297,7 +277,7 @@ export default function RSVP() {
 	return (
 		<>
 			<h1 className="page-title">RSVP</h1>
-			<div className="page-rsvp">
+			<div className={`page-rsvp ${isThankyouMessage ? "hidden" : ""}`}>
 				{guestListSearch()}
 				{!isLoading ? (
 					getContent()
@@ -306,6 +286,9 @@ export default function RSVP() {
 						<LoaderCircle className="page-rsvp-loader" size="48px" color="var(--mocha)" />
 					</div>
 				)}
+			</div>
+			<div className={`page-rsvp page-rsvp-thankyou ${isThankyouMessage ? "visible" : ""}`}>
+				Thank you for responding.
 			</div>
 		</>
 	);

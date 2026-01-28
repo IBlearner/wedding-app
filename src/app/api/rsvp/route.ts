@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "redis";
 
-const client = await createClient({ url: process.env.REDIS_URL }).connect();
+const client = await createClient({ url: process.env.DB_REDIS_URL }).connect();
 
 const checkUserResponded = async (id: string) => {
 	if (!client) throw new Error("Redis client not working.");
