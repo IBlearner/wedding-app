@@ -93,8 +93,6 @@ export default function RSVP() {
 			const res = await fetch(`/api/rsvp?id=${guest.id}`);
 			const data = await res.json();
 
-			console.log(data);
-
 			// If they have, show blocked content
 			if (data.responded) {
 				setGuestAlreadyResponded(true);
@@ -111,8 +109,10 @@ export default function RSVP() {
 	const handleRsvpSubmit = async (event: React.FormEvent<HTMLElement>) => {
 		event.preventDefault();
 
+		// TODO use Guest object from GUESTS
 		const response = {
 			id: guestId,
+			guestFullName: guestFullName,
 			isAttending: isAttending,
 			dietryReqs: dietryReqs,
 			isPerforming: isPerforming

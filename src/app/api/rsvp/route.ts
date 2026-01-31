@@ -3,10 +3,23 @@ import { createClient } from "redis";
 
 const client = await createClient({ url: process.env.DB_REDIS_URL }).connect();
 
-const checkUserResponded = async (id: string) => {
+const checkUserResponded = async (userID: string) => {
 	if (!client) throw new Error("Redis client not working.");
-	const data = await client.get(id);
-	return !!data;
+
+	let userHasResponded = false;
+	// Value of the guests data array
+	const data = await client.lRange("guests", 0, -1);
+	console.log(data);
+	data.some((e) => {
+		try {
+			const guest = JSON.parse(e);
+			// If ID has matched, user has already provided a response
+			userHasResponded = guest.id == userID;
+		} catch {
+			console.error("Something went wrong checking the guest list for a guest response.");
+		}
+	});
+	return userHasResponded;
 };
 
 export async function POST(request: Request) {
@@ -29,10 +42,8 @@ export async function POST(request: Request) {
 		if (userHasResponded) {
 			return NextResponse.json({ message: "User already responded", responded: true }, { status: 409 });
 		} else {
-			delete response.id;
-			// Add entry to the database
-			await client.set(userId, JSON.stringify(response));
-
+			// Push user details object into guest list array
+			await client.rPush("guests", JSON.stringify(data));
 			return NextResponse.json({ message: "RSVP saved" }, { status: 200 });
 		}
 	} catch (error) {
