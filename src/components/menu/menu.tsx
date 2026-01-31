@@ -24,11 +24,11 @@ export default function Menu() {
 	return (
 		<>
 			<button className="menu-home" onClick={() => navigateTo("/")}>
-				<House />
+				<House size={32} />
 			</button>
 
 			<button className="menu-button" onClick={() => setIsOpen(true)}>
-				<MenuIcon />
+				<MenuIcon size={32} />
 			</button>
 			<div className={`menu-overlay ${isOpen ? "open" : "close"}`} onClick={() => setIsOpen(false)}></div>
 			<div className={`menu ${isOpen ? "open" : "close"}`}>

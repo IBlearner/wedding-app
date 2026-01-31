@@ -9,7 +9,6 @@ const checkUserResponded = async (userID: string) => {
 	let userHasResponded = false;
 	// Value of the guests data array
 	const data = await client.lRange("guests", 0, -1);
-	console.log(data);
 	data.some((e) => {
 		try {
 			const guest = JSON.parse(e);

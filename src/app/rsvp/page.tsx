@@ -125,7 +125,6 @@ export default function RSVP() {
 			},
 			body: JSON.stringify(response)
 		});
-		console.log(response);
 
 		if (res.ok) {
 			setIsThankyouMessage(true);
@@ -196,12 +195,12 @@ export default function RSVP() {
 
 	const sectionDietryReqs = () => {
 		return (
-			<fieldset className="rsvp-fieldset fieldset-attendance">
+			<fieldset className="rsvp-fieldset fieldset-dietry-reqs">
 				<legend>Please specify any dietry requirements.</legend>
 				<label htmlFor="dietry-reqs">
 					<input
 						type="text"
-						placeholder="Please let us know what you cannot consume."
+						placeholder="Enter requirements"
 						name="dietry-reqs"
 						value={dietryReqs}
 						onChange={(e) => setDietryReqs(e.target.value)}
