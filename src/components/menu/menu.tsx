@@ -27,7 +27,7 @@ export default function Menu() {
 
 	return (
 		<>
-			<div className="menu-mobile-bar">fdsnifsjdn</div>
+			<div className="menu-mobile-bar title">KIEN VI & SAMANTHA</div>
 			<div className="menu-mobile-bar">
 				<button className="menu-mobile-button" onClick={() => navigateTo("/")}>
 					<House size={32} />
