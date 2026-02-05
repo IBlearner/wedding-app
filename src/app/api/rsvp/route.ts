@@ -56,7 +56,6 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
 	const { searchParams } = new URL(request.url);
 	const code = searchParams.get("code");
-	console.log(code);
 
 	// Validate the code
 	if (!code) {

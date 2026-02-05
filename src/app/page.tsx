@@ -22,13 +22,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="centre_container">
-				<Image
-					className={`home_image ${true ? "visible" : ""}`}
-					src={images[activeImg]}
-					width={300}
-					height={400}
-					alt="home_picture"
-				/>
+				<Image className={`home-image ${true ? "visible" : ""}`} src={images[activeImg]} width={300} height={400} alt="Wedding couple posing" />
 				<h1 className="name_heading">
 					Kien Vi
 					<br /> <span className="centered-and">and</span>
