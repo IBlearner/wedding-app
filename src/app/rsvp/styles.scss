@@ -49,6 +49,11 @@
 
 	.page-rsvp-name-search-button {
 		@include button-style(fit-content);
+
+		&:disabled {
+			background-color: grey;
+			color: lightgrey;
+		}
 	}
 
 	#page-rsvp-name-search-error {
@@ -110,6 +115,30 @@
 		margin: 10px;
 		border-bottom: 1px solid var(--mocha-dark);
 		background-color: var(--bg);
+	}
+	.rsvp-fieldset-up-down {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.5rem 0 0.5rem 0;
+
+		.rsvp-fieldset-up-down-buttons {
+			all: unset;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 2rem;
+			height: 2rem;
+			background-color: var(--mocha-dark);
+			border-radius: 100%;
+
+			&:disabled {
+				background-color: grey;
+				color: lightgrey;
+			}
+		}
 	}
 
 	.rsvp-fieldset-options {

@@ -1,43 +1,39 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { guestList } from "@/data/constants";
-import { capitaliseString } from "@/helpers/stringUtils";
+import React, { useState } from "react";
+import { groupList } from "@/data/constants";
 import "./styles.scss";
-import { MoveRight, LoaderCircle } from "lucide-react";
+import { MoveRight, LoaderCircle, Minus, Plus } from "lucide-react";
+import { Group } from "@/helpers/types";
 
 export default function RSVP() {
 	// Raw input value
 	const [search, setSearch] = useState<string>("");
-	// Guest data
-	const [guestId, setGuestId] = useState<number>(0);
-	const [guestFullName, setGuestFullName] = useState<string>(""); // Only used to display their name
-	// Guest details
-	const [isAttending, setIsAttending] = useState<boolean>(false);
+	// Group data
+	const [groupCode, setGroupCode] = useState<number>(0);
+	const [groupName, setGroupName] = useState<string>(""); // Only used to display their name
+	// Group details
+	// const [numAttending, setIsAttending] = useState<boolean>(false);
+	const [groupSizeAttending, setGroupSizeAttending] = useState<number>(0);
+	const [groupSize, setGroupSize] = useState<number>(0);
 	const [dietryReqs, setDietryReqs] = useState<string>("");
 	const [isPerforming, setIsPerforming] = useState<boolean>(false);
 	// Error triggers
-	const [guestAlreadyResponded, setGuestAlreadyResponded] = useState<boolean>(false);
+	const [groupAlreadyResponded, setGroupAlreadyResponded] = useState<boolean>(false);
 	const [searchError, setSearchError] = useState<boolean>(false);
 	const [otherError, setOtherError] = useState<boolean>(false);
 	// Page state
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isThankyouMessage, setIsThankyouMessage] = useState<boolean>(false);
 
-	// Reset input data on attendance switch
-	useEffect(() => {
-		setDietryReqs("");
-		setIsPerforming(false);
-	}, [isAttending]);
-
-	// Reset guest
-	const resetGuest = () => {
-		setGuestId(0);
-		setGuestFullName("");
+	// Reset group
+	const resetGroup = () => {
+		setGroupCode(0);
+		setGroupName("");
 	};
 
-	// Reset guest details
-	const resetGuestDetails = () => {
-		setIsAttending(false);
+	// Reset group details
+	const resetGroupDetails = () => {
+		setGroupSizeAttending(0);
 		setDietryReqs("");
 		setIsPerforming(false);
 	};
@@ -45,7 +41,7 @@ export default function RSVP() {
 	// Reset errors
 	const resetErrors = () => {
 		setSearchError(false);
-		setGuestAlreadyResponded(false);
+		setGroupAlreadyResponded(false);
 		setOtherError(false);
 	};
 
@@ -56,10 +52,10 @@ export default function RSVP() {
 	};
 
 	const resetAllData = () => {
-		// Reset guest
-		resetGuest();
-		// Reset guest details
-		resetGuestDetails();
+		// Reset griyo
+		resetGroup();
+		// Reset griyo details
+		resetGroupDetails();
 		// Reset errors
 		resetErrors();
 		// Reset page states
@@ -79,27 +75,28 @@ export default function RSVP() {
 		// Set page as loading
 		setIsLoading(true);
 
-		const guest = guestList.find((guest) => {
-			const guestFullName = `${guest.fName} ${guest.lName}`.toLowerCase();
-			return guestFullName.includes(search.toLowerCase());
+		const group = groupList.find((group) => {
+			const userSearch = parseInt(search.toLowerCase().trim());
+			return group.code === userSearch;
 		});
 
-		// If guest is found, initialise everything to default values
-		if (guest) {
-			setGuestId(guest.id);
-			setGuestFullName(`${capitaliseString(guest.fName)} ${capitaliseString(guest.lName)}`);
+		// If group is found, initialise everything to default values
+		if (group) {
+			setGroupCode(group.code);
+			setGroupName(group.groupName);
+			setGroupSize(group.groupAmt);
 
 			// Check if user has already responded
-			const res = await fetch(`/api/rsvp?id=${guest.id}`);
+			const res = await fetch(`/api/rsvp?code=${group.code}`);
 			const data = await res.json();
 
 			// If they have, show blocked content
 			if (data.responded) {
-				setGuestAlreadyResponded(true);
+				setGroupAlreadyResponded(true);
 			}
 		} else {
-			setGuestId(0);
-			setGuestFullName("");
+			setGroupCode(0);
+			setGroupName("");
 			setSearchError(true);
 		}
 
@@ -109,13 +106,10 @@ export default function RSVP() {
 	const handleRsvpSubmit = async (event: React.FormEvent<HTMLElement>) => {
 		event.preventDefault();
 
-		// TODO use Guest object from GUESTS
-		const response = {
-			id: guestId,
-			guestFullName: guestFullName,
-			isAttending: isAttending,
-			dietryReqs: dietryReqs,
-			isPerforming: isPerforming
+		const response: Group = {
+			code: groupCode,
+			groupName: groupName,
+			groupAmt: groupSizeAttending
 		};
 
 		const res = await fetch("/api/rsvp", {
@@ -133,70 +127,88 @@ export default function RSVP() {
 		}
 	};
 
-	const isGuestListSearchDisabled = () => {
+	const isGroupSearchDisabled = () => {
 		// If the term is empty, or shorter than 4 chars
 		return search.trim() === "" || search.length <= 3;
 	};
 
-	const guestListSearch = () => {
+	const groupListSearch = () => {
 		return (
 			<form id="page-rsvp-name-search" onSubmit={handleSearchSubmit}>
 				<label id="name-search-label" htmlFor="name-search"></label>
-				<input id="name-search" type="text" onChange={handleSearchInput} placeholder="Enter your name" />
-				<button className="page-rsvp-name-search-button" type="submit" disabled={isGuestListSearchDisabled()}>
+				<input id="name-search" type="text" onChange={handleSearchInput} placeholder="Enter your code" />
+				<button className="page-rsvp-name-search-button" type="submit" disabled={isGroupSearchDisabled()}>
 					<MoveRight />
 				</button>
 			</form>
 		);
 	};
 
-	// const yesNoButtons = (state: boolean, noAction: () => void, yesAction: () => void) => {
-	// 	return (
-	// 		<div className="yes-no-buttons">
-	// 			<button className={!state ? "selected" : ""} onClick={() => noAction()} type="button">
-	// 				No
-	// 			</button>
-	// 			<button className={state ? "selected" : ""} onClick={() => yesAction()} type="button">
-	// 				Yes
-	// 			</button>
-	// 		</div>
-	// 	);
-	// };
-
 	const sectionAttendance = () => {
-		return (
-			<fieldset className="rsvp-fieldset fieldset-attendance">
-				<legend>Will you be attending the wedding?</legend>
-				<div className="rsvp-fieldset-options">
-					<label htmlFor="attendance">
-						<span>Yes</span>
-						<input
-							type="radio"
-							name="attendance"
-							value="yes"
-							checked={isAttending}
-							onChange={() => setIsAttending(true)}
-						/>
-					</label>
-					<label htmlFor="attendance">
-						<span>No</span>
-						<input
-							type="radio"
-							name="attendance"
-							value="no"
-							checked={!isAttending}
-							onChange={() => setIsAttending(false)}
-						/>
-					</label>
-				</div>
-			</fieldset>
-		);
+		if (groupSize === 1) {
+			return (
+				<fieldset className="rsvp-fieldset fieldset-attendance">
+					<legend>Will you be attending?</legend>
+					<div className="rsvp-fieldset-options">
+						<label htmlFor="attendance">
+							<span>Yes</span>
+							<input
+								type="radio"
+								name="attendance"
+								value="yes"
+								checked={groupSizeAttending === 1}
+								onChange={() => setGroupSizeAttending(1)}
+							/>
+						</label>
+						<label htmlFor="attendance">
+							<span>No</span>
+							<input
+								type="radio"
+								name="attendance"
+								value="no"
+								checked={groupSizeAttending === 0}
+								onChange={() => setGroupSizeAttending(0)}
+							/>
+						</label>
+					</div>
+				</fieldset>
+			);
+		} else {
+			return (
+				<fieldset className="rsvp-fieldset fieldset-attendance">
+					<legend>How many of your group will be attending?</legend>
+					<div className="rsvp-fieldset-up-down">
+						<button
+							type="button"
+							className="rsvp-fieldset-up-down-buttons"
+							onClick={() => setGroupSizeAttending(groupSizeAttending - 1)}
+							disabled={groupSizeAttending < 1}
+						>
+							<Minus color="white" />
+						</button>
+						<div>{groupSizeAttending === 0 ? "None" : groupSizeAttending}</div>
+						<button
+							type="button"
+							className="rsvp-fieldset-up-down-buttons"
+							onClick={() => setGroupSizeAttending(groupSizeAttending + 1)}
+							disabled={groupSizeAttending >= groupSize}
+						>
+							<Plus color="white" />
+						</button>
+					</div>
+				</fieldset>
+			);
+		}
 	};
 
 	const sectionDietryReqs = () => {
 		return (
 			<fieldset className="rsvp-fieldset fieldset-dietry-reqs">
-				<legend>Please specify any dietry requirements.</legend>
+				<legend>
+					{groupSize === 1
+						? "Please specify your dietry requirements"
+						: "Please specify any dietry requirements for your group"}
+				</legend>
 				<label htmlFor="dietry-reqs">
 					<input
 						type="text"
@@ -213,7 +225,11 @@ export default function RSVP() {
 	const sectionPerformance = () => {
 		return (
 			<fieldset className="rsvp-fieldset fieldset-performance">
-				<legend>Would you like to contribute a performance?</legend>
+				<legend>
+					{groupSize === 1
+						? "Would you like to contribute a performance?"
+						: "Would you or any in your group like to contribute a performance?"}
+				</legend>
 				<div className="rsvp-fieldset-options">
 					<label htmlFor="performing">
 						<span>Yes</span>
@@ -242,25 +258,26 @@ export default function RSVP() {
 
 	const getContent = () => {
 		if (searchError) {
-			return <div id="page-rsvp-name-search-error">Could not find you. Please try again.</div>;
-		} else if (guestAlreadyResponded) {
+			return <div id="page-rsvp-name-search-error">Could not find your group. Please try your code again.</div>;
+		} else if (groupAlreadyResponded) {
 			return (
 				<div id="page-rsvp-name-search-error">
-					You have already responded. If you wish to amend your response, please contact the couple.
+					We have already received a response from your group. If you wish to amend your response, please
+					contact the couple.
 				</div>
 			);
 		} else if (otherError) {
-			return <div id="page-rsvp-name-search-error">Error saving your RSVP. Please try again later.</div>;
-		} else if (guestFullName) {
+			return <div id="page-rsvp-name-search-error">Error saving this RSVP. Please try again later.</div>;
+		} else if (groupName) {
 			return (
 				<>
-					<h2 className="page-rsvp-title">Hello {guestFullName}</h2>
+					<h2 className="page-rsvp-title">{groupName}</h2>
 					<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
 						{sectionAttendance()}
-						{isAttending ? sectionDietryReqs() : null}
-						{isAttending ? sectionPerformance() : null}
+						{groupSizeAttending ? sectionDietryReqs() : null}
+						{groupSizeAttending ? sectionPerformance() : null}
 						{isPerforming ? (
-							<div>Fantastic! Please reach out to Samantha to organise your performance.</div>
+							<div>Fantastic! Samantha will reach out to organise any performances.</div>
 						) : null}
 						<button type="submit" className="page-rsvp-submit-button">
 							Submit
@@ -269,7 +286,7 @@ export default function RSVP() {
 				</>
 			);
 		} else {
-			return <div>Please search for your name.</div>;
+			return <div>Please enter the code you receieved on the wedding invitation.</div>;
 		}
 	};
 
@@ -277,7 +294,7 @@ export default function RSVP() {
 		<>
 			<h1 className="page-title">RSVP</h1>
 			<div className={`page-rsvp ${isThankyouMessage ? "hidden" : ""}`}>
-				{guestListSearch()}
+				{groupListSearch()}
 				{!isLoading ? (
 					getContent()
 				) : (

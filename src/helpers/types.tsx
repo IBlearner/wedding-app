@@ -1,0 +1,5 @@
+export type Group = {
+	code: number;
+	groupName: string;
+	groupAmt: number;
+};

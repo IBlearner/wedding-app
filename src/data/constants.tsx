@@ -1,190 +1,75 @@
-export const guestList = [
+export const groupList = [
 	{
-		id: 1,
-		fName: "Rosanne",
-		lName: "Morterra"
+		code: 1111,
+		groupName: "Lam family",
+		groupAmt: 3
 	},
 	{
-		id: 2,
-		fName: "teststst",
-		lName: "test"
+		code: 2222,
+		groupName: "Vanbrugh family",
+		groupAmt: 3
 	},
 	{
-		id: 3,
-		fName: "tttttttttest",
-		lName: "test"
+		code: 3333,
+		groupName: "Test family",
+		groupAmt: 3
 	},
 	{
-		id: 4,
-		fName: "test",
-		lName: "van brugh"
+		code: 4132,
+		groupName: "Vino family",
+		groupAmt: 3
 	},
 	{
-		id: 5,
-		fName: "tttttttttttttest",
-		lName: "test"
+		code: 5555,
+		groupName: "Mendoza group",
+		groupAmt: 3
 	},
 	{
-		id: 6,
-		fName: "mark",
-		lName: "test"
+		code: 6666,
+		groupName: "Salas group",
+		groupAmt: 3
 	},
 	{
-		id: 7,
-		fName: "test",
-		lName: "salas"
+		code: 7777,
+		groupName: "Sophie and Fabio",
+		groupAmt: 3
 	},
 	{
-		id: 8,
-		fName: "test",
-		lName: "1"
+		code: 8888,
+		groupName: "Tho family",
+		groupAmt: 3
 	},
 	{
-		id: 9,
-		fName: "test",
-		lName: "2"
-	},
-	{
-		id: 10,
-		fName: "test",
-		lName: "3"
-	},
-	{
-		id: 10,
-		fName: "test",
-		lName: "4"
-	},
-	{
-		id: 10,
-		fName: "test",
-		lName: "5"
-	},
-	{
-		id: 10,
-		fName: "test",
-		lName: "6"
-	},
-	{
-		id: 11,
-		fName: "my",
-		lName: "test"
-	},
-	{
-		id: 12,
-		fName: "co",
-		lName: "7"
-	},
-	{
-		id: 12,
-		fName: "duong",
-		lName: "7"
-	},
-	{
-		id: 0,
-		fName: "chu",
-		lName: "6"
-	},
-	{
-		id: 0,
-		fName: "thim",
-		lName: "6"
-	},
-	{
-		id: 0,
-		fName: "co",
-		lName: "3"
-	},
-	{
-		id: 0,
-		fName: "bac",
-		lName: "ba"
-	},
-	{
-		id: 0,
-		fName: "test",
-		lName: "test"
-	},
-	{
-		id: 0,
-		fName: "test",
-		lName: "teststst"
-	},
-	{
-		id: 0,
-		fName: "luc",
-		lName: "luc"
-	},
-	{
-		id: 0,
-		fName: "luc",
-		lName: "luc husband"
-	},
-	{
-		id: 0,
-		fName: "on",
-		lName: "on"
-	},
-	{
-		id: 0,
-		fName: "on",
-		lName: "on husband"
-	},
-	{
-		id: 0,
-		fName: "mum",
-		lName: "bro 1"
-	},
-	{
-		id: 0,
-		fName: "mum",
-		lName: "bro 1 wife"
-	},
-	{
-		id: 0,
-		fName: "mum",
-		lName: "bro 2"
-	},
-	{
-		id: 0,
-		fName: "mum",
-		lName: "bro 2 wife"
-	},
-	{
-		id: 0,
-		fName: "mum",
-		lName: "bro 3"
-	},
-	{
-		id: 0,
-		fName: "mum",
-		lName: "bro 3 wife"
+		code: 1616,
+		groupName: "Dinasha DS",
+		groupAmt: 1
 	}
 ];
 
 export const faqs = [
 	{
 		id: 0,
-		question: "What can I give as a gift?",
+		question: "What can I give as a gift? family",
 		answer: "Money!"
 	},
 	{
 		id: 1,
-		question: "What can I give as a gift?",
+		question: "What can I give as a gift? family",
 		answer: "Money!"
 	},
 	{
 		id: 2,
-		question: "What can I give as a gift?",
+		question: "What can I give as a gift? family",
 		answer: "Money!"
 	},
 	{
 		id: 3,
-		question: "What can I give as a gift?",
+		question: "What can I give as a gift? family",
 		answer: "Money!"
 	},
 	{
 		id: 4,
-		question: "What can I give as a gift?",
+		question: "What can I give as a gift? family",
 		answer: "Money!"
 	}
 ];

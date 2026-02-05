@@ -1,6 +1,10 @@
 @mixin box-shadow() {
-	box-shadow: 3px 7px 11px 0px #0003, 0 6px 20px #00000030;
-	box-shadow: 3px 7px 11px 0px #0003, 0 6px 20px var(--mocha);
+	box-shadow:
+		3px 7px 11px 0px #0003,
+		0 6px 20px #00000030;
+	box-shadow:
+		3px 7px 11px 0px #0003,
+		0 6px 20px var(--mocha);
 }
 
 @mixin button-style($width: 5rem) {
@@ -12,11 +16,14 @@
 	text-align: center;
 	width: $width;
 	padding: 0.5rem 0.75rem 0.5rem 0.75rem;
-	background-color: var(--mocha);
-	color: var(--dark-grey);
+	background-color: var(--mocha-dark);
+	color: var(--white);
 	border-radius: 4px;
 
-	transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+	transition:
+		transform 0.3s ease,
+		background-color 0.3s ease,
+		color 0.3s ease;
 
 	&:hover {
 		transform: translateY(-2px);
