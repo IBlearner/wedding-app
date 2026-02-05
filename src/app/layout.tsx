@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 import Menu from "../components/menu/menu";
 import "../assets/stylesheets/globals.scss";
-import { Cormorant } from "next/font/google";
+import { Delicious_Handrawn } from "next/font/google";
 
-const dancingScript = Cormorant({
-	subsets: ["latin"]
+const defaultFont = Delicious_Handrawn({
+    weight: ["400"],
 });
 
 export const metadata: Metadata = {
-	title: "Kienvi and Samantha's wedding",
-	description: "Celebrate this day with us"
+    title: "Kienvi and Samantha's wedding",
+    description: "Celebrate this day with us",
 };
 
 export default function RootLayout({
-	children
+    children,
 }: Readonly<{
-	children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en" className={dancingScript.className}>
-			<body>
-				<Menu />
-				<div className="page">{children}</div>
-			</body>
-		</html>
-	);
+    return (
+        <html lang="en" className={defaultFont.className}>
+            <body>
+                <Menu />
+                <div className="page">{children}</div>
+            </body>
+        </html>
+    );
 }
