@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { House, Menu as MenuIcon, X, MessageCircleQuestionMark, CalendarDays, Hotel, MailQuestionMark } from "lucide-react";
 import "./styles.scss";
 import { useWeddingDateCountdown } from "@/hooks/countdown";
-import { Bodoni_Moda, Hachi_Maru_Pop } from "next/font/google";
+import { Bodoni_Moda, Oranienbaum } from "next/font/google";
 
-const HachiPop = Hachi_Maru_Pop({
+const Bodoni = Bodoni_Moda({
     weight: ["400"],
 });
 
-const Bodoni = Bodoni_Moda({
+const titleFont = Oranienbaum({
     weight: ["400"],
 });
 
@@ -27,16 +27,21 @@ export default function Menu() {
 
     return (
         <>
-            <div className="menu-mobile-bar title">KIEN VI & SAMANTHA</div>
+            <div className={`menu-mobile-bar title ${titleFont.className}`}>
+                KIEN VI <span className={`menu-bar-text ${Bodoni.className}`}> & </span> SAMANTHA
+            </div>
             <div className="menu-mobile-bar">
                 <button className="menu-mobile-button" onClick={() => navigateTo("/")}>
                     <House size={32} />
                 </button>
                 <div className="menu-mobile-countdown">
-                    <div className={`menu-mobile-countdown-time ${HachiPop.className}`}>
-                        {timeLeft?.days} • {timeLeft?.hours} • {timeLeft?.minutes} • {timeLeft?.seconds}
+                    <div>
+                        <span className={`menu-mobile-countdown-time ${titleFont.className}`}>{timeLeft?.days} days | </span>
+                        <span className={`menu-mobile-countdown-time2 ${titleFont.className}`}>
+                            {timeLeft?.hours}h • {timeLeft?.minutes}m • {timeLeft?.seconds}s
+                        </span>
                     </div>
-                    <div className={`menu-mobile-countdown-text ${HachiPop.className}`}>days to go</div>
+                    {/* <div className={`menu-mobile-countdown-text ${titleFont.className}`}>days to go</div> */}
                 </div>
                 <button className="menu-mobile-button" onClick={() => setIsOpen(true)}>
                     <MenuIcon size={32} />

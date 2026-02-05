@@ -7,48 +7,46 @@ import styles from "./page.module.css";
 import "./styles.scss";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { DM_Serif_Text, Style_Script } from "next/font/google";
-
-const DMSerifText = DM_Serif_Text({
-	weight: ["400"],
-});
-
-const LavishlyYours = Style_Script({
-	weight: ["400"],
-});
 
 const images = [img1, img2, img3];
 
 export default function Home() {
-	const [activeImg, setActiveImg] = useState(0);
+    const [activeImg, setActiveImg] = useState(0);
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		setActiveImg((prev) => (prev + 1) % images.length);
-	// 	}, 2000);
+    // useEffect(() => {
+    // 	const interval = setInterval(() => {
+    // 		setActiveImg((prev) => (prev + 1) % images.length);
+    // 	}, 2000);
 
-	// 	return () => clearInterval(interval);
-	// }, []);
+    // 	return () => clearInterval(interval);
+    // }, []);
 
-	return (
-		<>
-			{/* <h1 className={`name_heading ${DMSerifText.className}`}>
+    return (
+        <>
+            {/* <h1 className={`name_heading ${DMSerifText.className}`}>
                 KIEN VI <span className={`centered-and ${LavishlyYours.className}`}>&</span> SAMANTHA
             </h1> */}
-			<main>
-				<Image className={`home-image ${true ? "visible" : ""}`} src={images[activeImg]} alt="picture of couple" fill />
-				<div className="centre_container">
-					{/* <div className="home_image_wrapper"><Image className={`home-image ${true ? "visible" : ""}`} src={images[activeImg]} alt="picture of couple" fill /></div> */}
+            <main>
+                <Image className={`home-image ${true ? "visible" : ""}`} src={images[activeImg]} alt="picture of couple" fill />
+                <div className="centre_container">
+                    {/* <div className="home_image_wrapper"><Image className={`home-image ${true ? "visible" : ""}`} src={images[activeImg]} alt="picture of couple" fill /></div> */}
 
-					<div id="home-page-date">11th April 2026</div>
-					<Link href="/rsvp">
-						<button id="home-page-rsvp-button" rel="noopener noreferrer">
-							RSVP
-						</button>
-					</Link>
-				</div>
-			</main>
-			<footer className={styles.footer}></footer>
-		</>
-	);
+                    {/* <div className={`home_date ${DancingScript.className}`} id="home-page-date">
+                        Please join us to celebrate our day
+                    </div> */}
+                    {/* <Link href="/faq">
+                        <button id="home-page-rsvp-button" rel="noopener noreferrer">
+                            FAQ
+                        </button>
+                    </Link> */}
+                    <Link href="/rsvp">
+                        <button id="home-page-rsvp-button" rel="noopener noreferrer">
+                            RSVP
+                        </button>
+                    </Link>
+                </div>
+            </main>
+            <footer className={styles.footer}></footer>
+        </>
+    );
 }
