@@ -1,31 +1,41 @@
 @use "../../../src/assets/stylesheets/mixins" as *;
 
 .page-schedule {
-	margin-left: 1.25rem;
-	border-left: 1px solid var(--dark-grey);
-	border-left-style: dashed;
+    margin-left: 1.25rem;
+    border-left: 1px solid var(--dark-grey);
+    border-left-style: dashed;
 
-	> div {
-		margin-bottom: 1.75rem;
-	}
+    > div {
+        margin-bottom: 1.75rem;
+    }
+}
+
+.all_image {
+    width: 2rem;
+    height: 2rem;
+    padding-left: 0.5rem;
 }
 
 .schedule-record {
-	position: relative;
+    position: relative;
 }
 
 .schedule-time {
-	@include box-shadow();
-	position: absolute;
-	display: inline-block; // Required because it's a span element
-	left: -28px;
-	color: var(--bg);
-	background-color: var(--dark-grey);
-	padding: 0.1rem 0.4rem 0.4rem 0.4rem;
-	width: 38px;
+    @include box-shadow();
+    position: absolute;
+    display: inline-block; // Required because it's a span element
+    left: -28px;
+    color: var(--bg);
+    background-color: var(--mocha-dark);
+    padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+    width: 40px;
 }
 
 .schedule-text {
-	margin-left: 2.25rem;
-	font-weight: 900;
+    margin-left: 3rem;
+    font-weight: 900;
+}
+
+.schedule-text2 {
+    margin-left: 3rem;
 }

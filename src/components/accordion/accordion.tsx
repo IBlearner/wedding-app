@@ -3,35 +3,35 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import "./styles.scss";
 import { ReactNode } from "react";
-import { Klee_One, Courgette } from "next/font/google";
+import { Dancing_Script, Oranienbaum } from "next/font/google";
 
-const KleeOne = Klee_One({
-	weight: ["400"],
+const answerFont = Oranienbaum({
+    weight: ["400"],
 });
 
-const Courgettes = Courgette({
-	weight: ["400"],
+const qFont = Dancing_Script({
+    weight: ["700"],
 });
 
 interface AccordionProps {
-	question: string;
-	answer: ReactNode;
+    question: string;
+    answer: ReactNode;
 }
 
 export default function Accordion({ question, answer }: AccordionProps) {
-	const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-	const toggleAccordion = () => {
-		setIsOpen(!isOpen);
-	};
+    const toggleAccordion = () => {
+        setIsOpen(!isOpen);
+    };
 
-	return (
-		<div className={`accordion ${isOpen ? "open" : "close"}`} onClick={() => toggleAccordion()}>
-			<button className={`accordion-question ${Courgettes.className}`}>
-				<span>{question}</span>
-				<ChevronDown />
-			</button>
-			<div className={`accordion-answer ${KleeOne.className}`}>{answer}</div>
-		</div>
-	);
+    return (
+        <div className={`accordion ${isOpen ? "open" : "close"}`} onClick={() => toggleAccordion()}>
+            <button className={`accordion-question `}>
+                <span className={`faq-question ${qFont.className}`}>{question}</span>
+                <ChevronDown />
+            </button>
+            <div className={`accordion-answer ${answerFont.className}`}>{answer}</div>
+        </div>
+    );
 }
