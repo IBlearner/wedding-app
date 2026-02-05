@@ -2,34 +2,34 @@
 @use "../assets/stylesheets/variables" as *;
 
 .name_heading {
-    text-align: center;
-    font-size: 3rem;
-    color: rgb(0, 0, 0);
+	text-align: center;
+	font-size: 3rem;
+	color: rgb(0, 0, 0);
 }
 
 .centered-and {
-    // display: block;
-    text-align: center;
-    font-size: 50px;
+	// display: block;
+	text-align: center;
+	font-size: 50px;
 }
 
 .centre_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
 
-    @media (max-width: $mobile-breakpoint) {
-        // margin-top: 45vh;
-        // background-color: white;
-        border-radius: 10%;
-    }
+	@media (max-width: $mobile-breakpoint) {
+		// margin-top: 45vh;
+		// background-color: white;
+		border-radius: 10%;
+	}
 }
 
 #home-page-rsvp-button {
-    @include button-style();
-    @include box-shadow();
+	@include button-style();
+	@include box-shadow();
 }
 
 // .home-image {
@@ -39,40 +39,39 @@
 // 	// Offset image from the task bar
 // 	margin-top: 3.5rem;
 .home_image_wrapper {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    border-radius: 120px;
-    overflow: hidden;
+	position: relative;
+	width: 300px;
+	height: 400px;
+	border-radius: 120px;
+	overflow: hidden;
 }
 .home_image_wrapper::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-    pointer-events: none;
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+	pointer-events: none;
 }
 .home-image {
-    border-radius: 120px;
-    opacity: 1;
-    // transition: opacity 0.6s ease-out;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // position: relative;
-    // height: 50%;
+	border-radius: 120px;
+	opacity: 1;
+	// transition: opacity 0.6s ease-out;
+	// background-position: center;
+	// background-repeat: no-repeat;
+	// background-size: cover;
+	// position: relative;
+	// height: 50%;
 
-    // &.visible {
-    //     opacity: 0.7;
-    // }
+	// &.visible {
+	//     opacity: 0.7;
+	// }
 
-    @media (max-width: $mobile-breakpoint) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 65vh;
-        z-index: -1;
-        // border-radius: 120px;
-    }
+	@media (max-width: $mobile-breakpoint) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 65vh;
+		z-index: -1;
+	}
 }
