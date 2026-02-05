@@ -16,8 +16,8 @@
     text-align: center;
     width: $width;
     padding: 0.5rem 0.75rem 0.5rem 0.75rem;
-    background-color: var(--mocha-dark);
-    color: var(--white);
+    background-color: var(--cream);
+    color: var(--black);
     border-radius: 4px;
 
     transition:
@@ -28,7 +28,7 @@
     &:hover {
         transform: translateY(-2px);
         //to do: mek the buttons derker on hover
-        color: var(--black);
-        background-color: var(--cream);
+        color: var(--white);
+        background-color: var(--mocha-dark);
     }
 }

@@ -1,16 +1,16 @@
 @use "./variables" as *;
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
-	--white: white;
-	--bg: whitesmoke;
-	--dark-grey: #252525;
-	--gold: #dac685;
-	--mocha: #d3c8bb;
-	--mocha-dark: #997760;
-	--goldy: rgb(218, 205, 134);
-	--cream: rgb(226, 220, 193);
+    --background: #ffffff;
+    --foreground: #171717;
+    --white: white;
+    --bg: whitesmoke;
+    --dark-grey: #252525;
+    --gold: #dac685;
+    --mocha: #d3c8bb;
+    --mocha-dark: #c0ad90;
+    --goldy: rgb(218, 205, 134);
+    --cream: rgb(226, 220, 193);
 }
 
 // @media (prefers-color-scheme: dark) {
@@ -22,51 +22,51 @@
 
 html,
 body {
-	max-width: 100vw;
-	overflow-x: hidden;
-	background-color: var(--bg);
-	overflow-x: hidden;
-	font-size: 20px;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: var(--bg);
+    overflow-x: hidden;
+    font-size: 20px;
 }
 
 body {
-	color: var(--foreground);
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	background-color: transparent;
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: transparent;
 }
 
 .page {
-	padding: 2rem 2.5rem 2rem 2.5rem;
+    padding: 2rem 2.5rem 2rem 2.5rem;
 
-	@media (min-width: $mobile-breakpoint) {
-		padding-top: 2.5rem;
-		padding-left: 30vw;
-		padding-right: 30vw;
-	}
+    @media (min-width: $mobile-breakpoint) {
+        padding-top: 2.5rem;
+        padding-left: 30vw;
+        padding-right: 30vw;
+    }
 }
 
 * {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 a {
-	color: inherit;
+    color: inherit;
 }
 
 fieldset {
-	padding: 0.5rem 0;
+    padding: 0.5rem 0;
 }
 
 @media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
+    html {
+        color-scheme: dark;
+    }
 }
 
 .page-title {
-	text-align: center;
-	padding-bottom: 1.5rem;
-	color: var(--dark-grey);
+    text-align: center;
+    padding-bottom: 1.5rem;
+    color: var(--dark-grey);
 }

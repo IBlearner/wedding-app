@@ -1,183 +1,188 @@
 @use "../../assets/stylesheets/mixins" as *;
 
 .page-rsvp {
-	display: flex;
-	flex-direction: column;
-	max-height: 1000px;
-	gap: 2rem;
-	text-align: center;
-	opacity: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 1000px;
+    gap: 2rem;
+    text-align: center;
+    opacity: 1;
 
-	transition:
-		max-height 1s ease,
-		opacity 0.5s ease;
+    transition:
+        max-height 1s ease,
+        opacity 0.5s ease;
 
-	&.hidden {
-		max-height: 0;
-		opacity: 0;
-	}
+    &.hidden {
+        max-height: 0;
+        opacity: 0;
+    }
 }
 
+.page-rsvp-title {
+    color: var(--mocha-dark);
+    font-size: 40px;
+    font-weight: bold;
+}
 .page-rsvp-thankyou {
-	opacity: 0;
-	transition: opacity 0.8s ease-in-out;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
 
-	&.visible {
-		opacity: 1;
-	}
+    &.visible {
+        opacity: 1;
+    }
 }
 
 #page-rsvp-name-search {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
-	height: 44px;
-	align-self: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 44px;
+    align-self: center;
 
-	#name-search-label {
-		width: 100%;
-	}
+    #name-search-label {
+        width: 100%;
+    }
 
-	#name-search {
-		all: unset;
-		box-sizing: border-box;
-		height: 100%;
-		padding: 0;
-		margin-right: 0.75rem;
-		border-bottom: 1px solid black;
-	}
+    #name-search {
+        all: unset;
+        box-sizing: border-box;
+        height: 100%;
+        padding: 0;
+        margin-right: 0.75rem;
+        border-bottom: 1px solid rgb(0, 0, 0);
+    }
 
-	.page-rsvp-name-search-button {
-		@include button-style(fit-content);
+    .page-rsvp-name-search-button {
+        @include button-style(fit-content);
 
-		&:disabled {
-			background-color: grey;
-			color: lightgrey;
-		}
-	}
+        &:disabled {
+            background-color: grey;
+            color: lightgrey;
+        }
+    }
 
-	#page-rsvp-name-search-error {
-		height: 100%;
-	}
+    #page-rsvp-name-search-error {
+        height: 100%;
+    }
 }
 
 .page-rsvp-form {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .yes-no-buttons {
-	display: flex;
-	gap: 1.5rem;
-	justify-content: center;
-	padding: 5px 0;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 5px 0;
 
-	button {
-		@include button-style(3rem);
+    button {
+        @include button-style(3rem);
 
-		&:not(.selected) {
-			background-color: var(--bg);
-			color: var(--mocha-dark);
-			border: 1px solid var(--white);
-		}
-	}
+        &:not(.selected) {
+            background-color: var(--bg);
+            color: var(--mocha-dark);
+            border: 1px solid var(--white);
+        }
+    }
 }
 
 .section-dietry-selections {
-	input[type="checkbox"] {
-		padding-left: 8rem;
-	}
-	label {
-		padding-left: 0.5rem;
-	}
+    input[type="checkbox"] {
+        padding-left: 8rem;
+    }
+    label {
+        padding-left: 0.5rem;
+    }
 }
 
 .rsvp-fieldset {
-	background-color: var(--mocha);
-	border: 0px;
-	padding: 0;
+    background-color: var(--cream);
+    border: 0px;
+    padding: 0;
 
-	legend {
-		width: 80%;
-		padding: 4px 8px;
-		background-color: var(--mocha-dark);
-		color: var(--white);
-	}
+    legend {
+        width: 80%;
+        padding: 4px 8px;
+        background-color: var(--mocha-dark);
+        color: var(--white);
+    }
 
-	&.fieldset-attendance {
-		height: fit-content;
-	}
+    &.fieldset-attendance {
+        height: fit-content;
+    }
 
-	&.fieldset-dietry-reqs input {
-		all: unset;
-		box-sizing: border-box;
-		height: 100%;
-		min-height: 40px;
-		padding: 6px;
-		margin: 10px;
-		border-bottom: 1px solid var(--mocha-dark);
-		background-color: var(--bg);
-	}
-	.rsvp-fieldset-up-down {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		gap: 1rem;
-		padding: 0.5rem 0 0.5rem 0;
+    &.fieldset-dietry-reqs input {
+        all: unset;
+        box-sizing: border-box;
+        height: 100%;
+        min-height: 40px;
+        padding: 6px;
+        margin: 10px;
+        border-bottom: 1px solid var(--mocha-dark);
+        background-color: var(--bg);
+    }
+    .rsvp-fieldset-up-down {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem 0 0.5rem 0;
 
-		.rsvp-fieldset-up-down-buttons {
-			all: unset;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 2rem;
-			height: 2rem;
-			background-color: var(--mocha-dark);
-			border-radius: 100%;
+        .rsvp-fieldset-up-down-buttons {
+            all: unset;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--mocha-dark);
+            border-radius: 100%;
 
-			&:disabled {
-				background-color: grey;
-				color: lightgrey;
-			}
-		}
-	}
+            &:disabled {
+                background-color: rgb(202, 196, 182);
+                color: lightgrey;
+            }
+        }
+    }
 
-	.rsvp-fieldset-options {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		gap: 24px;
-		padding: 0.5rem 0;
+    .rsvp-fieldset-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 24px;
+        padding: 0.5rem 0;
 
-		label {
-			span {
-				margin-right: 10px;
-			}
+        label {
+            span {
+                margin-right: 10px;
+            }
 
-			input[type="radio"] {
-				transform: scale(1.5);
-			}
-		}
-	}
+            input[type="radio"] {
+                transform: scale(1.5);
+            }
+        }
+    }
 }
 
 .page-rsvp-submit-button {
-	@include button-style();
-	margin-left: auto;
-	margin-right: auto;
+    @include button-style();
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .page-rsvp-loader {
-	animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
 }
 
 @keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(359deg);
-	}
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
 }

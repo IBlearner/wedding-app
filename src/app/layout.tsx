@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Menu from "../components/menu/menu";
 import "../assets/stylesheets/globals.scss";
-import { Delicious_Handrawn } from "next/font/google";
+import { Bodoni_Moda } from "next/font/google";
 
-const defaultFont = Delicious_Handrawn({
+const defaultFont = Bodoni_Moda({
     weight: ["400"],
 });
 
