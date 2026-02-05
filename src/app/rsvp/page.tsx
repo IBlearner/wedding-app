@@ -109,15 +109,15 @@ export default function RSVP() {
 		const response: Group = {
 			code: groupCode,
 			groupName: groupName,
-			groupAmt: groupSizeAttending
+			groupAmt: groupSizeAttending,
 		};
 
 		const res = await fetch("/api/rsvp", {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(response)
+			body: JSON.stringify(response),
 		});
 
 		if (res.ok) {
@@ -152,23 +152,11 @@ export default function RSVP() {
 					<div className="rsvp-fieldset-options">
 						<label htmlFor="attendance">
 							<span>Yes</span>
-							<input
-								type="radio"
-								name="attendance"
-								value="yes"
-								checked={groupSizeAttending === 1}
-								onChange={() => setGroupSizeAttending(1)}
-							/>
+							<input type="radio" name="attendance" value="yes" checked={groupSizeAttending === 1} onChange={() => setGroupSizeAttending(1)} />
 						</label>
 						<label htmlFor="attendance">
 							<span>No</span>
-							<input
-								type="radio"
-								name="attendance"
-								value="no"
-								checked={groupSizeAttending === 0}
-								onChange={() => setGroupSizeAttending(0)}
-							/>
+							<input type="radio" name="attendance" value="no" checked={groupSizeAttending === 0} onChange={() => setGroupSizeAttending(0)} />
 						</label>
 					</div>
 				</fieldset>
@@ -178,21 +166,11 @@ export default function RSVP() {
 				<fieldset className="rsvp-fieldset fieldset-attendance">
 					<legend>How many of your group will be attending?</legend>
 					<div className="rsvp-fieldset-up-down">
-						<button
-							type="button"
-							className="rsvp-fieldset-up-down-buttons"
-							onClick={() => setGroupSizeAttending(groupSizeAttending - 1)}
-							disabled={groupSizeAttending < 1}
-						>
+						<button type="button" className="rsvp-fieldset-up-down-buttons" onClick={() => setGroupSizeAttending(groupSizeAttending - 1)} disabled={groupSizeAttending < 1}>
 							<Minus color="white" />
 						</button>
-						<div>{groupSizeAttending === 0 ? "None" : groupSizeAttending}</div>
-						<button
-							type="button"
-							className="rsvp-fieldset-up-down-buttons"
-							onClick={() => setGroupSizeAttending(groupSizeAttending + 1)}
-							disabled={groupSizeAttending >= groupSize}
-						>
+						<div>{groupSizeAttending}</div>
+						<button type="button" className="rsvp-fieldset-up-down-buttons" onClick={() => setGroupSizeAttending(groupSizeAttending + 1)} disabled={groupSizeAttending >= groupSize}>
 							<Plus color="white" />
 						</button>
 					</div>
@@ -204,19 +182,9 @@ export default function RSVP() {
 	const sectionDietryReqs = () => {
 		return (
 			<fieldset className="rsvp-fieldset fieldset-dietry-reqs">
-				<legend>
-					{groupSize === 1
-						? "Please specify your dietry requirements"
-						: "Please specify any dietry requirements for your group"}
-				</legend>
+				<legend>{groupSize === 1 ? "Please specify your dietry requirements" : "Please specify any dietry requirements for your group"}</legend>
 				<label htmlFor="dietry-reqs">
-					<input
-						type="text"
-						placeholder="Enter requirements"
-						name="dietry-reqs"
-						value={dietryReqs}
-						onChange={(e) => setDietryReqs(e.target.value)}
-					/>
+					<input type="text" placeholder="Enter requirements" name="dietry-reqs" value={dietryReqs} onChange={(e) => setDietryReqs(e.target.value)} />
 				</label>
 			</fieldset>
 		);
@@ -225,31 +193,15 @@ export default function RSVP() {
 	const sectionPerformance = () => {
 		return (
 			<fieldset className="rsvp-fieldset fieldset-performance">
-				<legend>
-					{groupSize === 1
-						? "Would you like to contribute a performance?"
-						: "Would you or any in your group like to contribute a performance?"}
-				</legend>
+				<legend>{groupSize === 1 ? "Would you like to contribute a performance?" : "Would you or any in your group like to contribute a performance?"}</legend>
 				<div className="rsvp-fieldset-options">
 					<label htmlFor="performing">
 						<span>Yes</span>
-						<input
-							type="radio"
-							name="performing"
-							value="yes"
-							checked={isPerforming}
-							onChange={() => setIsPerforming(true)}
-						/>
+						<input type="radio" name="performing" value="yes" checked={isPerforming} onChange={() => setIsPerforming(true)} />
 					</label>
 					<label htmlFor="performing">
 						<span>No</span>
-						<input
-							type="radio"
-							name="performing"
-							value="no"
-							checked={!isPerforming}
-							onChange={() => setIsPerforming(false)}
-						/>
+						<input type="radio" name="performing" value="no" checked={!isPerforming} onChange={() => setIsPerforming(false)} />
 					</label>
 				</div>
 			</fieldset>
@@ -260,12 +212,7 @@ export default function RSVP() {
 		if (searchError) {
 			return <div id="page-rsvp-name-search-error">Could not find your group. Please try your code again.</div>;
 		} else if (groupAlreadyResponded) {
-			return (
-				<div id="page-rsvp-name-search-error">
-					We have already received a response from your group. If you wish to amend your response, please
-					contact the couple.
-				</div>
-			);
+			return <div id="page-rsvp-name-search-error">We have already received a response from your group. If you wish to amend your response, please contact the couple.</div>;
 		} else if (otherError) {
 			return <div id="page-rsvp-name-search-error">Error saving this RSVP. Please try again later.</div>;
 		} else if (groupName) {
@@ -276,9 +223,7 @@ export default function RSVP() {
 						{sectionAttendance()}
 						{groupSizeAttending ? sectionDietryReqs() : null}
 						{groupSizeAttending ? sectionPerformance() : null}
-						{isPerforming ? (
-							<div>Fantastic! Samantha will reach out to organise any performances.</div>
-						) : null}
+						{isPerforming ? <div>Fantastic! Samantha will reach out to organise any performances.</div> : null}
 						<button type="submit" className="page-rsvp-submit-button">
 							Submit
 						</button>
@@ -303,9 +248,7 @@ export default function RSVP() {
 					</div>
 				)}
 			</div>
-			<div className={`page-rsvp page-rsvp-thankyou ${isThankyouMessage ? "visible" : ""}`}>
-				Thank you for responding.
-			</div>
+			<div className={`page-rsvp page-rsvp-thankyou ${isThankyouMessage ? "visible" : ""}`}>Thank you for responding.</div>
 		</>
 	);
 }
