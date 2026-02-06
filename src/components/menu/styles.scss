@@ -16,9 +16,26 @@
 	}
 
 	&.title {
-		font-size: 1.7rem;
-		gap: 1rem;
+		font-size: 2rem;
+		letter-spacing: 1rem;
 		background-color: var(--bronze);
+		background-image: url("../../assets/images/bronze bg.jpg");
+		background-size: "cover";
+		background-position: "center";
+		background-repeat: "no-repeat";
+	}
+
+	.menu-bar-text {
+		font-size: 1.1rem;
+		padding: 2rem;
+	}
+	.menu-mobile-button {
+		all: unset;
+		width: 1.5rem;
+		height: 1.5rem;
+		padding: 0.75rem;
+		text-align: center;
+		background-color: transparent;
 
 		@media (min-width: $mobile-breakpoint) {
 			letter-spacing: 1.1rem;

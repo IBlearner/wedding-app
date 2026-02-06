@@ -51,10 +51,12 @@ export const groupList = [
 export const faqs = [
     {
         id: 0,
-        question: "What should I wear",
+        question: "What should I wear?",
         answer: (
             <div>
-                <p>The dress code for our wedding is semi-formal to formal attire. Nude/neutral colours including browns, pinks, creams, golds & greys.</p>
+                <p>
+                    The dress code for our wedding is <b>semi-formal to formal</b> attire. Nude/neutral colours including browns, pinks, creams, golds & greys. Please <u>avoid</u> wearing jeans and sneakers if you can.
+                </p>
 
                 <img src={dressImage.src} alt="Dress code example" />
             </div>
@@ -65,7 +67,8 @@ export const faqs = [
         question: "Can I bring a plus one?",
         answer: (
             <div>
-                Unfortunately we do have limited space at our reception venue, we will only be able to accommodate those listed on the invitation. Please contact Samantha if you would like to discuss further. Thank you for understanding!
+                Unfortunately we do have limited space at our reception venue, we will only be able to accommodate those <u>listed on the invitation</u>. Please contact Samantha if you would like to discuss further. This also goes for
+                children that are not listed. Thank you for understanding!
                 <br />
                 <a href="mailto:svanbrugh@outlook.com">svanbrugh@outlook.com</a>
             </div>
@@ -94,11 +97,25 @@ export const faqs = [
     {
         id: 4,
         question: "When should I RVSP?",
-        answer: <div> We kindly ask that you please RVSP by 14th March. Due to venue and catering requirements, anyone who has not responded by this date will unfortunately not be able to attend.</div>,
+        answer: (
+            <div>
+                We kindly ask that you please <b>RVSP by 14th March</b>. Due to venue and catering requirements, anyone who has not responded by this date will unfortunately not be able to attend.
+            </div>
+        ),
     },
     {
         id: 5,
         question: "What if I have dietary restrictions?",
         answer: <div> We are happy to accommodate any dietary needs for all our guests. We ask that you please let us know in the RVSP tab or by contacting us directly.</div>,
+    },
+    {
+        id: 6,
+        question: "Is there accommodation available?",
+        answer: (
+            <div>
+                Yes! There is discounted rates at the Stamford Plaza if required. Please use discount code: <b>SFPROMO9</b> when booking on the website to receive this discount. It includes a dedicated car space and buffet breakfast the
+                next morning. Otherwise, Brisbane CBD has numerous accommodation options if you fancy!
+            </div>
+        ),
     },
 ];

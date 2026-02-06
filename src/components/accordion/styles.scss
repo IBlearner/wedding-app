@@ -1,64 +1,63 @@
 @use "../../../src/assets/stylesheets/mixins" as *;
 
 .accordion {
-	@include box-shadow();
-	cursor: pointer;
-	margin-bottom: 1rem;
-	background-color: var(--white);
+    @include box-shadow();
+    cursor: pointer;
+    margin-bottom: 1rem;
+    background-color: var(--white);
 
-	.accordion-question {
-		all: unset;
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-		font-weight: bolder;
-		font-size: 20px;
+    .accordion-question {
+        all: unset;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 30px;
 
-		svg {
-			transform: rotate(0deg);
-			transition: transform 0.5s ease;
-		}
-	}
+        svg {
+            transform: rotate(0deg);
+            transition: transform 0.5s ease;
+        }
+    }
 
-	.accordion-question,
-	.accordion-answer {
-		padding: 1rem;
-		border: 0.5px solid gainsboro;
-		border-radius: 1px;
-		color: var(--dark-grey);
-	}
+    .accordion-question,
+    .accordion-answer {
+        padding: 1rem;
+        border: 0.5px solid gainsboro;
+        border-radius: 1px;
+        color: var(--dark-grey);
+    }
 
-	.accordion-answer {
-		border-top: none;
-		padding-top: 0;
-		font-weight: 400;
-		font-size: 18px;
+    .accordion-answer {
+        border-top: none;
+        padding-top: 0;
+        font-weight: 400;
+        font-size: 25px;
 
-		img {
-			width: 100%;
-		}
-	}
+        img {
+            width: 100%;
+        }
+    }
 
-	&.open {
-		.accordion-question {
-			border-bottom: none;
+    &.open {
+        .accordion-question {
+            border-bottom: none;
 
-			svg {
-				transform: rotate(180deg);
-			}
-		}
+            svg {
+                transform: rotate(180deg);
+            }
+        }
 
-		.accordion-answer {
-			display: block;
-		}
-	}
+        .accordion-answer {
+            display: block;
+        }
+    }
 
-	&.close {
-		.accordion-answer {
-			display: none;
-		}
-	}
+    &.close {
+        .accordion-answer {
+            display: none;
+        }
+    }
 }
