@@ -51,7 +51,6 @@ export default function Menu() {
 							{timeLeft?.hours}h • {timeLeft?.minutes}m • {timeLeft?.seconds}s
 						</span>
 					</div>
-					{/* <div className={`menu-mobile-countdown-text ${titleFont.className}`}>days to go</div> */}
 				</div>
 				<button className="menu-mobile-button" onClick={() => setIsOpen(true)}>
 					<MenuIcon size={32} />
