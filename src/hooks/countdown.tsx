@@ -1,5 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
 
+type TimeRemaining = {
+	totalMs: number;
+	days: number;
+	hours: number;
+	minutes: number;
+	seconds: number;
+};
+
 function getUpcomingWeddingDate() {
 	const now = new Date();
 	const year = now.getFullYear();
@@ -28,17 +36,20 @@ function getTimeRemaining(target: Date) {
 }
 
 export function useWeddingDateCountdown() {
-	const targetDate = useMemo(() => getUpcomingWeddingDate(), []);
-
-	const [timeLeft, setTimeLeft] = useState(() => getTimeRemaining(targetDate));
+	const [timeLeft, setTimeLeft] = useState<TimeRemaining | null>(null);
 
 	useEffect(() => {
-		const intervalId = setInterval(() => {
-			setTimeLeft(getTimeRemaining(targetDate));
+		const target = getUpcomingWeddingDate();
+
+		// set initial value on mount
+		setTimeLeft(getTimeRemaining(target));
+
+		const id = window.setInterval(() => {
+			setTimeLeft(getTimeRemaining(target));
 		}, 1000);
 
-		return () => clearInterval(intervalId);
-	}, [targetDate]);
+		return () => clearInterval(id);
+	}, []);
 
 	return timeLeft;
 }
