@@ -16,19 +16,24 @@
 	}
 
 	&.title {
-		font-size: 2rem;
-		letter-spacing: 1rem;
+		font-size: 1.7rem;
+		gap: 1rem;
 		background-color: var(--bronze);
 		background-image: url("../../assets/images/bronze bg.jpg");
 		background-size: "cover";
 		background-position: "center";
 		background-repeat: "no-repeat";
+
+		@media (min-width: $mobile-breakpoint) {
+			font-size: 2.8rem;
+			letter-spacing: 1rem;
+		}
 	}
 
 	.menu-bar-text {
 		font-size: 1.1rem;
-		padding: 2rem;
 	}
+
 	.menu-mobile-button {
 		all: unset;
 		width: 1.5rem;

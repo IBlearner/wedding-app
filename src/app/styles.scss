@@ -19,6 +19,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-decoration: none;
 
 	@media (min-width: $mobile-breakpoint) {
 		position: absolute;
