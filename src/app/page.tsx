@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import img1 from "../assets/images/photo5.jpg";
+import img1 from "../assets/images/homephoto3.jpg";
 import img2 from "../assets/images/photo2.jpg";
 import img3 from "../assets/images/photo3.jpg";
 import styles from "./page.module.css";
