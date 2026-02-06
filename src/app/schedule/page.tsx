@@ -1,15 +1,7 @@
 import "./styles.scss";
 import { Dancing_Script } from "next/font/google";
-import ringImage from "../../assets/images/ring.png";
-import danceImage from "../../assets/images/dancing.png";
-import canapeImage from "../../assets/images/canape.png";
-import drinkImage from "../../assets/images/drinks.png";
-import entreeImage from "../../assets/images/entree.png";
-import mainImage from "../../assets/images/main.png";
-import cakeImage from "../../assets/images/cake.png";
-import thanksImage from "../../assets/images/thanks.png";
-import partyImage from "../../assets/images/party.png";
-import party2Image from "../../assets/images/party2.png";
+
+import { Gem, ChefHat, Martini, HandPlatter, PartyPopper, CakeSlice, Beef, Flower2, Guitar, HandHeart } from "lucide-react";
 
 const DancingScript = Dancing_Script({
     weight: ["400"],
@@ -23,7 +15,8 @@ export default function Schedule() {
                 <div className="schedule-record">
                     <span className="schedule-time">15:00</span>
                     <p className="schedule-text">
-                        WE DO! <img className={`all_image`} src={ringImage.src} alt="ring picture" />
+                        WE DO!
+                        <Gem />
                     </p>
                     <p className="schedule-text2">
                         Please arrive around 2:30pm for a 3pm ceremony start in the <b>Stamford Plaza</b> Main Garden. This will be followed by <b>Group Photos</b> before making your way to the Pre-Reception area for canapes.
@@ -32,14 +25,16 @@ export default function Schedule() {
                 <div className="schedule-record">
                     <span className="schedule-time">16:30</span>
                     <p className="schedule-text">
-                        Canopes Served <img className={`all_image`} src={canapeImage.src} alt="canape picture" />
+                        Canopes Served
+                        <ChefHat />
                     </p>
                     <p className="schedule-text2">Canapes will commence at 4:30pm. At this time any drinks will be self-service until the reception begins.</p>
                 </div>
                 <div className="schedule-record">
                     <span className="schedule-time">17:45</span>
                     <p className="schedule-text">
-                        Reception Opens <img className={`all_image`} src={drinkImage.src} alt="margarita picture" />
+                        Reception Opens
+                        <Martini />
                     </p>
                     <p className="schedule-text2">
                         Reception will be held in the <b>River Room</b> at the Stamford Plaza. Bar tab and Photo Booth will also commence at this time. Please enjoy the selection of drinks available, any drinks not on the list will be
@@ -49,35 +44,39 @@ export default function Schedule() {
                 <div className="schedule-record">
                     <span className="schedule-time">18:15</span>
                     <p className="schedule-text">
-                        Entrees Served <img className={`all_image`} src={entreeImage.src} alt="entree food picture" />
+                        Entrees Served
+                        <HandPlatter />
                     </p>
                     <p className="schedule-text2">Entrees will be served as alternate-drop. Our current choices include a Vegetarian Burrata option and a Smoked Duck Breast. Please let us know if you have any dietary requirements!</p>
                 </div>
                 <div className="schedule-record">
                     <span className="schedule-time">19:00</span>
                     <p className="schedule-text">
-                        Entertainment Commences <img className={`all_image`} src={partyImage.src} alt="party picture" />
+                        Entertainment Commences
+                        <PartyPopper />
                     </p>
                     <p className="schedule-text2">Entertainment will include a number of speeches, performances and traditions. Please enjoy and take part where you can!</p>
                 </div>
                 <div className="schedule-record">
                     <span className="schedule-time">19:15</span>
                     <p className="schedule-text">
-                        Mains Served <img className={`all_image`} src={mainImage.src} alt="main food picture" />
+                        Mains Served <Beef />
                     </p>
                     <p className="schedule-text2">Mains will be served as alternate-drop. Our current choices include a Beef and Fish option. Please let us know if you have any dietary requirements!</p>
                 </div>
                 <div className="schedule-record">
                     <span className="schedule-time">20:00</span>
                     <p className="schedule-text">
-                        Entertainment Continues <img className={`all_image`} src={party2Image.src} alt="party dancing picture" />
+                        Entertainment Continues
+                        <Guitar />
                     </p>
                     <p className="schedule-text2">Entertainment will continue with the bouquet toss, first dance, father-daughter dance and a traditional filipino money dance! Please do not feel obliged to take part.</p>
                 </div>
                 <div className="schedule-record">
                     <span className="schedule-time">20:30</span>
                     <p className="schedule-text">
-                        Cake Served <img className={`all_image`} src={cakeImage.src} alt="wedding cake picture" />
+                        Cake Served
+                        <CakeSlice />
                     </p>
                     <p className="schedule-text2">Cutting of the cake will commence at this time. We hope you enjoy!</p>
                 </div>
@@ -85,14 +84,15 @@ export default function Schedule() {
                 <div className="schedule-record">
                     <span className="schedule-time">21:00</span>
                     <p className="schedule-text">
-                        LET'S DANCE <img className={`all_image`} src={danceImage.src} alt="dancing picture" />
+                        LET'S DANCE
+                        <Flower2 />
                     </p>
                     <p className="schedule-text2">The end of all the formal parts of the reception. This time is to dance, relax and have fun!</p>
                 </div>
                 <div className="schedule-record">
                     <span className="schedule-time">21:45</span>
                     <p className="schedule-text">
-                        Bar Tab & Photo Booth Close <img className={`all_image`} src={thanksImage.src} alt="thank you picture" />
+                        Bar Tab & Photo Booth Close <HandHeart />
                     </p>
                     <p className="schedule-text2">Please get all your drinks and pictures in before the end of the night!</p>
                 </div>
