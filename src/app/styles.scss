@@ -2,70 +2,70 @@
 @use "../assets/stylesheets/variables" as *;
 
 .centre_container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
-	@media (max-width: $mobile-breakpoint) {
-		// margin-top: 45vh;
-		// background-color: white;
-		border-radius: 10%;
-	}
+    @media (max-width: $mobile-breakpoint) {
+        // margin-top: 45vh;
+        // background-color: white;
+        border-radius: 10%;
+    }
 }
 
 #home-page-rsvp {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 
-	@media (min-width: $mobile-breakpoint) {
-		position: absolute;
-		top: 50vh;
-		right: 8vw;
-	}
+    @media (min-width: $mobile-breakpoint) {
+        position: absolute;
+        top: 50vh;
+        right: 8vw;
+    }
 }
 
 #home-page-rsvp-button {
-	@include button-style();
-	box-shadow:
-		0 4px 8px 0px rgba(0, 0, 0, 0.3),
-		0 5px 40px var(--mocha),
-		inset 0 -4px 30px rgba(0, 0, 0, 0.4);
-	width: 10rem;
-	font-size: 1.5rem;
-	background-color: transparent;
-	color: white;
-	// text-decoration: none;
+    @include button-style();
+    box-shadow:
+        0 4px 8px 0px rgba(0, 0, 0, 0.3),
+        0 5px 40px var(--mocha),
+        inset 0 -4px 30px rgba(0, 0, 0, 0.4);
+    width: 10rem;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: white;
+    // text-decoration: none;
 
-	@media (min-width: $mobile-breakpoint) {
-		width: 14rem;
-		height: 5rem;
-		font-size: 3rem;
-		letter-spacing: 0.5rem;
-	}
+    @media (min-width: $mobile-breakpoint) {
+        width: 14rem;
+        height: 5rem;
+        font-size: 3rem;
+        letter-spacing: 0.5rem;
+    }
 }
 
 #home-page-date {
-	text-align: center;
-	font-size: 2rem;
-	color: var(--goldy);
+    text-align: center;
+    font-size: 2rem;
+    color: var(--goldy);
 }
 
 .home-image {
-	z-index: -1;
-	width: 100vw;
-	height: 100vh;
-	position: fixed !important;
-	top: 7rem !important;
-	right: auto !important;
-	bottom: auto !important;
-	object-fit: cover;
-	filter: grayscale(100%);
+    z-index: -1;
+    // width: 100vw;
+    // height: 100vh;
+    position: fixed !important;
+    top: 7rem !important;
+    right: auto !important;
+    bottom: auto !important;
+    // object-fit: cover;
+    filter: grayscale(100%);
 
-	@media (min-width: $mobile-breakpoint) {
-		top: 10.5rem !important;
-	}
+    @media (min-width: $mobile-breakpoint) {
+        top: 10.5rem !important;
+    }
 }
