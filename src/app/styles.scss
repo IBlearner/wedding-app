@@ -17,8 +17,9 @@ main {
 			left: 50%;
 			transform: translate(-50%, -50%);
 			color: var(--bg);
-			// font-size: 1rem;
+			font-size: 1.5rem;
 		}
+
 		#home-page-rsvp {
 			position: absolute;
 			top: 60%;
@@ -27,21 +28,23 @@ main {
 		}
 	}
 
-	// @media (min-width: $tablet-breakpoint) {
-	// 	#home-page-date {
-	// 		position: absolute;
-	// 		top: 40%;
-	// 		left: 50%;
-	// 		transform: translate(-50%, -50%);
-	// 		color: var(--bg);
-	// 	}
-	// 	#home-page-rsvp {
-	// 		position: absolute;
-	// 		top: 60%;
-	// 		left: 50%;
-	// 		transform: translate(-50%, -50%);
-	// 	}
-	// }
+	@media (min-width: $tablet-breakpoint) {
+		#home-page-date {
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: var(--bg);
+			font-size: 3rem;
+		}
+
+		#home-page-rsvp {
+			position: absolute;
+			top: 60%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
 }
 .centre_container {
 	display: flex;

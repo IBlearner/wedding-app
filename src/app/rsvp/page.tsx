@@ -85,7 +85,9 @@ export default function RSVP() {
 		setIsLoading(true);
 
 		const group = groupList.find((group) => {
-			const userSearch = parseInt(search.toLowerCase().trim());
+			// Handle groups that have been assigned a number with 0
+			const searchValue = search[0] === "0" ? "1" + search : search;
+			const userSearch = parseInt(searchValue.toLowerCase().trim());
 			return group.code === userSearch;
 		});
 
