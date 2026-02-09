@@ -70,6 +70,7 @@ export default function Groups() {
 					onClick={() => {
 						handleDeleteAll();
 					}}
+					disabled
 				>
 					Delete all
 				</button>
