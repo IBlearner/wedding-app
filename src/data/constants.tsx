@@ -168,23 +168,23 @@ export const groupList = [
 	},
 	{
 		code: 10002,
-		groupName: "test 1",
-		groupAmt: 1,
+		groupName: "test 2",
+		groupAmt: 2,
 	},
 	{
 		code: 10003,
-		groupName: "test 1",
-		groupAmt: 1,
+		groupName: "test 3",
+		groupAmt: 3,
 	},
 	{
 		code: 10004,
-		groupName: "test 1",
-		groupAmt: 1,
+		groupName: "test 4",
+		groupAmt: 4,
 	},
 	{
 		code: 10005,
-		groupName: "test 1",
-		groupAmt: 1,
+		groupName: "test 5",
+		groupAmt: 5,
 	},
 	{
 		code: 1001,

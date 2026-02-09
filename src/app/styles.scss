@@ -13,7 +13,7 @@ main {
 	@media (min-width: $mobile-breakpoint) {
 		#home-page-date {
 			position: absolute;
-			top: 40%;
+			top: 20%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			color: var(--bg);
@@ -22,7 +22,7 @@ main {
 
 		#home-page-rsvp {
 			position: absolute;
-			top: 60%;
+			top: 35%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
@@ -31,7 +31,6 @@ main {
 	@media (min-width: $tablet-breakpoint) {
 		#home-page-date {
 			position: absolute;
-			top: 40%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			color: var(--bg);
@@ -40,7 +39,6 @@ main {
 
 		#home-page-rsvp {
 			position: absolute;
-			top: 60%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}

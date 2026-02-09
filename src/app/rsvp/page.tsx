@@ -137,6 +137,14 @@ export default function RSVP() {
 		} else {
 			setOtherError(true);
 		}
+
+		// Give focus to page title to get user to "thanks" message
+		const titleElement = document.querySelector(".page-title") as HTMLElement;
+
+		if (titleElement) {
+			titleElement.scrollIntoView({ behavior: "smooth", block: "center" });
+			titleElement.focus();
+		}
 	};
 
 	const isGroupSearchDisabled = () => {
@@ -249,7 +257,9 @@ export default function RSVP() {
 
 	return (
 		<>
-			<h1 className={`page-title ${DancingScript.className}`}>Kindly RVSP</h1>
+			<h1 className={`page-title ${DancingScript.className}`} tabIndex={0}>
+				Kindly RVSP
+			</h1>
 			<div className={`page-rsvp ${isThankyouMessage ? "hidden" : ""}`}>
 				{groupListSearch()}
 				{!isLoading ? (

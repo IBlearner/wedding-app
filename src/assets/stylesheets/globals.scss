@@ -39,13 +39,17 @@ body {
 
 .page {
 	position: relative;
-	height: calc(100vh - 11rem);
 	padding: 2rem 2.5rem 2rem 2.5rem;
+	height: 100%;
 
 	@media (min-width: $mobile-breakpoint) {
 		padding-top: 2.5rem;
 		padding-left: 30vw;
 		padding-right: 30vw;
+	}
+
+	&:has(main) {
+		height: calc(100vh - 11rem);
 	}
 }
 
