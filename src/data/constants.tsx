@@ -161,6 +161,56 @@ export const groupList = [
 		groupName: "Justin Mortera",
 		groupAmt: 1,
 	},
+	{
+		code: 10001,
+		groupName: "test 1",
+		groupAmt: 1,
+	},
+	{
+		code: 10002,
+		groupName: "test 1",
+		groupAmt: 1,
+	},
+	{
+		code: 10003,
+		groupName: "test 1",
+		groupAmt: 1,
+	},
+	{
+		code: 10004,
+		groupName: "test 1",
+		groupAmt: 1,
+	},
+	{
+		code: 10005,
+		groupName: "test 1",
+		groupAmt: 1,
+	},
+	{
+		code: 1001,
+		groupName: "test 6",
+		groupAmt: 1,
+	},
+	{
+		code: 2002,
+		groupName: "test 7",
+		groupAmt: 1,
+	},
+	{
+		code: 3003,
+		groupName: "test 8",
+		groupAmt: 1,
+	},
+	{
+		code: 4004,
+		groupName: "test 9",
+		groupAmt: 1,
+	},
+	{
+		code: 5005,
+		groupName: "test 10",
+		groupAmt: 1,
+	},
 ];
 
 export const faqs = [

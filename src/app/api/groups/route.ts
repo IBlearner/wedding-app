@@ -18,3 +18,14 @@ export async function GET() {
 		return NextResponse.json({ message: "Failed to get RSVP details." }, { status: 500 });
 	}
 }
+
+export async function DELETE() {
+	try {
+		await client.del("groups");
+
+		return NextResponse.json({ message: "Success!" }, { status: 200 });
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ message: "Failed to delete group responses." }, { status: 500 });
+	}
+}
