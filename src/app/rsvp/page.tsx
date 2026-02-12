@@ -122,6 +122,7 @@ export default function RSVP() {
 			groupName: groupName,
 			groupAmt: groupSizeAttending,
 			dietryReqs: dietryReqs,
+			isPerforming: isPerforming,
 		};
 
 		const res = await fetch("/api/rsvp", {

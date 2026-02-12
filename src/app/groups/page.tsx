@@ -54,7 +54,12 @@ export default function Groups() {
 			return (
 				<div key={group?.code}>
 					<div>
-						{group.groupName} [{group.code}], {group.groupAmt}, {group.dietryReqs || "No special reqs."}
+						<h2>
+							{group.groupName} [{group.code}]
+						</h2>
+						<div>- Amount attending: {group.groupAmt}</div>
+						<div>- Any performing: {group.isPerforming ? "yes" : "no"}</div>
+						<div>- Dietry reqs: {group.dietryReqs || "No special reqs."}</div>
 					</div>
 					<button onClick={() => handleDelete(group.code.toString())}>Delete</button>
 				</div>
