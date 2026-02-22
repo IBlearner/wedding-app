@@ -236,10 +236,10 @@ export default function RSVP() {
 			return <div id={`page-rsvp-name-search-error ${Bodoni.className}`}>We have already received a response from your group. If you wish to amend your response, please contact the couple.</div>;
 		} else if (otherError) {
 			return <div id={`page-rsvp-name-search-error ${Bodoni.className}`}>Error saving this RSVP. Please try again later.</div>;
-		} else if (groupName) {
+		} else if (groupCode) {
 			return (
 				<>
-					<h2 className={`page-rsvp-title ${Bodoni.className}`}>{groupName}</h2>
+					<h2 className={`page-rsvp-title ${Bodoni.className}`}>{groupName ? groupName : "Hello!"}</h2>
 					<form className="page-rsvp-form" onSubmit={handleRsvpSubmit}>
 						{sectionAttendance()}
 						{groupSizeAttending ? sectionDietryReqs() : null}

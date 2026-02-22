@@ -13,7 +13,7 @@ export const groupList = [
 	},
 	{
 		code: 5396,
-		groupName: "Meditation",
+		groupName: "",
 		groupAmt: 2,
 	},
 	{
@@ -53,7 +53,7 @@ export const groupList = [
 	},
 	{
 		code: 7278,
-		groupName: "Trinh Tran",
+		groupName: "",
 		groupAmt: 2,
 	},
 	{
@@ -159,6 +159,11 @@ export const groupList = [
 	{
 		code: 9870,
 		groupName: "Justin Mortera",
+		groupAmt: 1,
+	},
+	{
+		code: 6767,
+		groupName: "Danny Nguyen",
 		groupAmt: 1,
 	},
 	{
